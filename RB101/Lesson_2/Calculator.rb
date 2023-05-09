@@ -10,4 +10,10 @@ operation = Kernel.gets().chomp().downcase
 
 if operation == 'addition'
   Kernel.puts("#{num1} + #{num2} = #{num1 + num2}")
-end
+elsif operation == 'multiplication'
+  Kernel.puts("#{num1} * #{num2} = #{num1 * num2}")
+elsif operation == 'subtraction'
+  Kernel.puts("#{num1} - #{num2} = #{num1 - num2}")
+else operation == 'division'
+  Kernel.puts("#{num1} / #{num2} = #{num1 / num2}")
+  
