@@ -17,13 +17,13 @@ prompt("Hello #{name} and welcome to calculator!")
 
 loop do
   num1 = ''
-  loop do 
+  loop do
     prompt("Please enter the first number")
     num1 = Kernel.gets().chomp()
 
     if valid_integer(num1)
       break
-    else 
+    else
       prompt("That doesn't appear to be a valid number, please try again")
     end
   end
@@ -58,10 +58,9 @@ loop do
     if %w(addition subtraction multiplication division).include?(operation)
       break
     else
-      prompt("Error, that is not a possible operation, please try again") 
+      prompt("Error, that is not a possible operation, please try again")
     end
   end
-
 
   if operation == 'addition'
     result = num1.to_i + num2.to_i
@@ -69,7 +68,7 @@ loop do
     result = num1.to_i * num2.to_i
   elsif operation == 'subtraction'
     result = num1.to_i - num2.to_i
-  else operation == 'division'
+  else operation = 'division'
     result = num1.to_f / num2.to_f
   end
 
