@@ -79,3 +79,5 @@ loop do
   repeat = Kernel.gets().chomp()
   break if repeat != 'y'
 end
+
+prompt("Thank you for using calculator #{name}, have a great day!")
