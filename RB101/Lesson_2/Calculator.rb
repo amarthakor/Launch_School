@@ -68,13 +68,13 @@ loop do
     result = num1.to_i * num2.to_i
   elsif operation == 'subtraction'
     result = num1.to_i - num2.to_i
-  else operation = 'division'
+  else
     result = num1.to_f / num2.to_f
   end
 
   prompt("The result is #{result}")
 
-  prompt("Would you like to perform another calculation? Press 'y' to start over ")
+  prompt("Would you like to perform another calculation? Press 'y' to restart")
   repeat = Kernel.gets().chomp()
   break if repeat != 'y'
 end
