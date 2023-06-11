@@ -1,6 +1,6 @@
 ## Command line calculator program
 ## ask user to input 2 numbers
-# ask for operaiton type that will be preformed on those 2 numbers
+# ask for operation type that will be preformed on those 2 numbers
 # output the value of said numbers/operation
 def prompt(message)
   Kernel.puts("> #{message}")
