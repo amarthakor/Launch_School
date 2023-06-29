@@ -6,12 +6,38 @@ def prompt(message)
   Kernel.puts("> #{message}")
 end
 
+
 def valid_integer(number)
-  number.to_i != 0
+  number.to_i.to_s == number
+end
+
+def valid_float(number)
+  number.to_f.to_s == number
+end
+
+def operation_to_message(operator)
+  if operator == '1'
+     "Adding"
+  elsif operator == '2'
+     "Subtracting"
+  elsif operator == '3'
+     "Multiplying"
+  else
+     "Dividing"
+  end
 end
 
 prompt("Whats your name?")
-name = Kernel.gets().chomp()
+
+name = ''
+loop do
+  name = Kernel.gets().chomp()
+
+  if name.empty? || name =~ /\s/
+    prompt("Please enter a valid name")
+  else break
+  end
+end
 
 prompt("Hello #{name} and welcome to calculator!")
 
@@ -22,6 +48,8 @@ loop do
     num1 = Kernel.gets().chomp()
 
     if valid_integer(num1)
+      break
+    elsif valid_float(num1)
       break
     else
       prompt("That doesn't appear to be a valid number, please try again")
@@ -35,47 +63,52 @@ loop do
 
     if valid_integer(num2)
       break
+    elsif valid_float(num2)
+      break
     else
       prompt("That doesn't appear to be a valid number, please try again")
     end
   end
 
   prompt("You entered #{num1} and #{num2}")
-  operations_choice = <<-ABC
+  operations_choice = <<-MSG
   Which operation would you like to perform?
-    addition
-    subtraction
-    multiplication
-    division
-    ABC
+    Press 1 for addition
+    Press 2 for subtraction
+    Press 3 for multiplication
+    Press 4 for division
+    MSG
 
   prompt(operations_choice)
 
   operation = ''
   loop do
-    operation = Kernel.gets().chomp().downcase
+    operation = Kernel.gets().chomp()
 
-    if %w(addition subtraction multiplication division).include?(operation)
+    if %w(1 2 3 4).include?(operation)
       break
     else
       prompt("Error, that is not a possible operation, please try again")
     end
   end
 
-  if operation == 'addition'
-    result = num1.to_i + num2.to_i
-  elsif operation == 'multiplication'
-    result = num1.to_i * num2.to_i
-  elsif operation == 'subtraction'
-    result = num1.to_i - num2.to_i
-  else
+  prompt("#{operation_to_message(operation)} the two numbers... ")
+
+  result = ''
+  if operation == '1'
+    result = num1.to_f + num2.to_f
+  elsif operation == '2'
+    result = num1.to_f - num2.to_f
+  elsif operation == '3'
+    result = num1.to_f * num2.to_f
+  else operation == '4'
     result = num1.to_f / num2.to_f
   end
 
   prompt("The result is #{result}")
 
   prompt("Would you like to perform another calculation? Press 'y' to restart")
-  repeat = Kernel.gets().chomp()
+  repeat = Kernel.gets().chomp().downcase()
   break if repeat != 'y'
 end
 
