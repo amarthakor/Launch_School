@@ -1,0 +1,4 @@
+name: "Whats your name?"
+valid_name: "Please enter a valid name"
+welcome: "Hello #{name} and welcome to calculator!"
+number_1: "Please enter the first number"
