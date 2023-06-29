@@ -6,7 +6,6 @@ def prompt(message)
   Kernel.puts("> #{message}")
 end
 
-
 def valid_integer(number)
   number.to_i.to_s == number
 end
@@ -17,13 +16,13 @@ end
 
 def operation_to_message(operator)
   if operator == '1'
-     "Adding"
+    "Adding"
   elsif operator == '2'
-     "Subtracting"
+    "Subtracting"
   elsif operator == '3'
-     "Multiplying"
+    "Multiplying"
   else
-     "Dividing"
+    "Dividing"
   end
 end
 
@@ -33,7 +32,7 @@ name = ''
 loop do
   name = Kernel.gets().chomp()
 
-  if name.empty? || name =~ /\s{2, +}/
+  if name.empty? || name =~ /\s/
     prompt("Please enter a valid name")
   else break
   end
@@ -101,7 +100,7 @@ loop do
     result = num1.to_f - num2.to_f
   elsif operation == '3'
     result = num1.to_f * num2.to_f
-  else operation == '4'
+  else
     result = num1.to_f / num2.to_f
   end
 
