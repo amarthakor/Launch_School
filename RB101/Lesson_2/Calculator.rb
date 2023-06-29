@@ -33,7 +33,7 @@ name = ''
 loop do
   name = Kernel.gets().chomp()
 
-  if name.empty? || name =~ /\s/
+  if name.empty? || name =~ /\s{2, +}/
     prompt("Please enter a valid name")
   else break
   end
