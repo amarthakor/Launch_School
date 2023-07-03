@@ -7,4 +7,10 @@ number_2: "Please enter the second number"
 invalid_num: "That doesn't appear to be a valid number, please try again"
 number_choices: "You entered #{num1} and #{num2}"
 operations_choice: "Which operation would you like to perform?
-"
+  Press 1 for addition
+  Press 2 for subtraction
+  Press 3 for multiplication
+  Press 4 for division"
+invalid_operation: "Error, that is not a possible operation, please try again"
+zero_div_error: "You cannot divide a number by 0, please reenter the second 
+number"
