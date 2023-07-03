@@ -55,41 +55,51 @@ loop do
     end
   end
 
+  operation = ''
   num2 = ''
   loop do
-    prompt("Please enter the second number")
-    num2 = Kernel.gets().chomp()
+    num2 = ''
+    loop do
+      prompt("Please enter the second number")
+      num2 = Kernel.gets().chomp()
 
-    if valid_integer(num2)
-      break
-    elsif valid_float(num2)
-      break
+      if valid_integer(num2)
+        break
+      elsif valid_float(num2)
+        break
+      else
+        prompt("That doesn't appear to be a valid number, please try again")
+      end
+    end
+
+    prompt("You entered #{num1} and #{num2}")
+    operations_choice = <<-MSG
+    Which operation would you like to perform?
+      Press 1 for addition
+      Press 2 for subtraction
+      Press 3 for multiplication
+      Press 4 for division
+      MSG
+
+    prompt(operations_choice)
+
+    loop do
+      operation = Kernel.gets().chomp()
+
+      if %w(1 2 3 4).include?(operation)
+        break
+      else
+        prompt("Error, that is not a possible operation, please try again")
+      end
+    end
+
+    if num2.to_f == 0 && operation == '4'
+      prompt("You cannot divide a number by 0, please reenter the second number")
     else
-      prompt("That doesn't appear to be a valid number, please try again")
+      break
     end
   end
 
-  prompt("You entered #{num1} and #{num2}")
-  operations_choice = <<-MSG
-  Which operation would you like to perform?
-    Press 1 for addition
-    Press 2 for subtraction
-    Press 3 for multiplication
-    Press 4 for division
-    MSG
-
-  prompt(operations_choice)
-
-  operation = ''
-  loop do
-    operation = Kernel.gets().chomp()
-
-    if %w(1 2 3 4).include?(operation)
-      break
-    else
-      prompt("Error, that is not a possible operation, please try again")
-    end
-  end
 
   prompt("#{operation_to_message(operation)} the two numbers... ")
 
