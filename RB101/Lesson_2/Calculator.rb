@@ -2,6 +2,9 @@
 ## ask user to input 2 numbers
 # ask for operation type that will be preformed on those 2 numbers
 # output the value of said numbers/operation
+require 'yaml'
+MESSAGES = YAML.load_file('calculator_messages.yml')
+
 def prompt(message)
   Kernel.puts("> #{message}")
 end
@@ -94,12 +97,11 @@ loop do
     end
 
     if num2.to_f == 0 && operation == '4'
-      prompt("You cannot divide a number by 0, please reenter the second number")
+      prompt("You can't divide a number by 0, please reenter the second number")
     else
       break
     end
   end
-
 
   prompt("#{operation_to_message(operation)} the two numbers... ")
 

@@ -12,7 +12,7 @@ operations_choice: "Which operation would you like to perform?
   Press 3 for multiplication
   Press 4 for division"
 invalid_operation: "Error, that is not a possible operation, please try again"
-zero_div_error: "You cannot divide a number by 0, please reenter the second 
+zero_div_error: "You can't divide a number by 0, please reenter the second 
 number"
 operation_process: "#{operation_to_message(operation)} the two numbers..."
 result: "The result is #{result}"
