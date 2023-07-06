@@ -84,7 +84,7 @@ loop do
       Press 4 for division
       MSG
 
-    prompt('operations_choice')
+    prompt(operations_choice)
 
     loop do
       operation = Kernel.gets().chomp()
