@@ -3,10 +3,16 @@
 # ask for operation type that will be preformed on those 2 numbers
 # output the value of said numbers/operation
 require 'yaml'
+
 MESSAGES = YAML.load_file('calculator_messages.yml')
+LANGUAGE = 'en' # Can change to 'es' for spanish
+
+def messages(message, language='en')
+  MESSAGES[lang][message]
+end
 
 def prompt(message, interpolation = {})
-  Kernel.puts("> #{format(MESSAGES[message], interpolation)}")
+  Kernel.puts("> #{format(MESSAGES[LANGUAGE][message], interpolation)}")
 end
 
 def valid_integer(number)
@@ -36,7 +42,7 @@ loop do
   name = Kernel.gets().chomp()
 
   if name.empty? || name =~ /\s/
-    prompt(MESSAGES['valid_name'])
+    prompt('valid_name')
   else break
   end
 end
@@ -84,7 +90,7 @@ loop do
       Press 4 for division
       MSG
 
-    prompt(operations_choice)
+    prompt('operations_choice')
 
     loop do
       operation = Kernel.gets().chomp()
