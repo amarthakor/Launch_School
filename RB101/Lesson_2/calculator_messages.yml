@@ -6,14 +6,10 @@ en:
   invalid_num: "That doesn't appear to be a valid number, please try again"
   number_2: "Please enter the second number"
   number_choices: "You entered %{num1} and %{num2}"
-  operations_choice: "Which operation would you like to perform?
-      
-      Press 1 for addition
-
-      Press 2 for subtraction
-
-      Press 3 for multiplication
-
+  operations_choice: "Which operation would you like to perform?\n
+      Press 1 for addition\n
+      Press 2 for subtraction\n
+      Press 3 for multiplication\n
       Press 4 for division"
   invalid_operation: "Error, that is not a possible operation, please try again"
   zero_div_error: "You can't divide a number by 0, please reenter the second 
@@ -31,14 +27,10 @@ es:
   invalid_num: "No parece ser un número válido, inténtalo de nuevo"
   number_2: "Por favor, introduzca el segundo número"
   number_choices: "Has introducido %{num1} y %{num2}"
-  operations_choice: "¿Qué operación le gustaría realizar?
-      
-      Presione 1 para agregar
-
-      Presione 2 para restar
-
-      Presione 3 para multiplicar
-
+  operations_choice: "¿Qué operación le gustaría realizar?\n
+      Presione 1 para agregar\n
+      Presione 2 para restar\n
+      Presione 3 para multiplicar\n
       Presione 4 para la división"
   invalid_operation: "Error, esa no es una operación posible, inténtelo de nuevo"
   zero_div_error: "No puedes dividir un número entre 0, vuelve a introducir el segundo número"
