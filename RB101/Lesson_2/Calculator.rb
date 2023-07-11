@@ -1,11 +1,14 @@
-## Command line calculator program
-## ask user to input 2 numbers
+# Command line calculator program
+# ask user to input 2 numbers
 # ask for operation type that will be preformed on those 2 numbers
 # output the value of said numbers/operation
+# ask user if they would like to do new operation or quit program
 require 'yaml'
 
 MESSAGES = YAML.load_file('calculator_messages.yml')
-LANGUAGE = 'es' # Can change to 'es' for spanish
+LANGUAGE = 'en' # Can change to 'es' for spanish
+
+# methods
 
 def messages(message, _lang = 'en')
   MESSAGES[lang][message]
