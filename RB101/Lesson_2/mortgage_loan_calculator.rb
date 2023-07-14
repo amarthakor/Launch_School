@@ -60,6 +60,7 @@ end
 loan_amount = ''
 apr = ''
 loan_years = ''
+monthly_payment = ''
 
 # main code
 prompt "Hello and welcome to mortgage loan calculator!"
@@ -90,6 +91,20 @@ end
 monthly_rate = apr.to_f / 100 / 12
 
 prompt "How long is the duration of your loan in years"
-
+loan_months = ''
 loop do
   loan_years = Kernel.gets().chomp()
+  if valid_float?(loan_years) && greater_than_0(loan_years)
+    loan_months = loan_years.to_f * 12
+    break
+  else
+    prompt "That is not a valid loan duration"
+    prompt "Please ensure that the loan duration is greater than 0"
+  end
+end
+
+# monthly paymeny calculation
+# (1 - (1 + monthly_rate)**(-loan_months)))
+prompt "Thank you, calculator will now begin to calculate your monthly payment!"
+
+puts "#{loan_amount}, #{loan_months}. #{monthly_rate}"
