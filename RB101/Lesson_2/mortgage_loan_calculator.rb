@@ -34,7 +34,7 @@
 #     - convert APR % to float/integer value
 #     - convert to MONTHLY rate by APR number / 12 (months)
 # - ask for loan duration in years
-#     - validate loan duration 
+#     - validate loan duration
 #     - multiply loan duration year x 12 (months)
 # - calculate monthly payment using formula + variables provided
 # - ask user if they would like to repeat calculation w/ different amounts
@@ -46,18 +46,50 @@ def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
-def valid_integer?(number)
-  number.to_i.to_s == number
-end
-
 def valid_float?(number)
   number.to_f.to_s == number
+  number.to_f
 end
 
+def greater_than_0(number)
+  number.to_f > 0
+end
+
+# insure loan is greater > 0
+
+loan_amount = ''
+apr = ''
+loan_years = ''
 
 # main code
+prompt "Hello and welcome to mortgage loan calculator!"
+prompt "What is the amount of your loan?"
 
+loop do
+  loan_amount = Kernel.gets().chomp()
+  if valid_float?(loan_amount) && greater_than_0(loan_amount)
+    break
+  else
+    prompt "That is not a valid loan amount"
+    prompt "Please ensure that the loan is greater than $0"
+  end
+end
 
+prompt "What is the Anual Percentage Rate on your loan (%)"
 
+loop do
+  apr = Kernel.gets().chomp()
+  if valid_float?(apr) && greater_than_0(apr)
+    break
+  else
+    prompt "That is not a valid APR"
+    prompt "Please ensure that the APR that is greater than 0"
+  end
+end
 
-# exit prompt
+monthly_rate = apr.to_f / 100 / 12
+
+prompt "How long is the duration of your loan in years"
+
+loop do
+  loan_years = Kernel.gets().chomp()
