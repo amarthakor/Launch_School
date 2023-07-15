@@ -64,47 +64,57 @@ monthly_payment = ''
 
 # main code
 prompt "Hello and welcome to mortgage loan calculator!"
-prompt "What is the amount of your loan?"
 
 loop do
-  loan_amount = Kernel.gets().chomp()
-  if valid_float?(loan_amount) && greater_than_0(loan_amount)
-    break
-  else
-    prompt "That is not a valid loan amount"
-    prompt "Please ensure that the loan is greater than $0"
+  prompt "What is the amount of your loan?"
+
+  loop do
+    loan_amount = Kernel.gets().chomp()
+    if valid_float?(loan_amount) && greater_than_0(loan_amount)
+      break
+    else
+      prompt "That is not a valid loan amount"
+      prompt "Please ensure that the loan is greater than $0"
+    end
   end
-end
 
-prompt "What is the Anual Percentage Rate on your loan (%)"
+  prompt "What is the Anual Percentage Rate on your loan (in %)"
 
-loop do
-  apr = Kernel.gets().chomp()
-  if valid_float?(apr) && greater_than_0(apr)
-    break
-  else
-    prompt "That is not a valid APR"
-    prompt "Please ensure that the APR that is greater than 0"
+  loop do
+    apr = Kernel.gets().chomp()
+    if valid_float?(apr) && greater_than_0(apr)
+      break
+    else
+      prompt "That is not a valid APR"
+      prompt "Please ensure that the APR that is greater than 0"
+    end
   end
-end
 
-monthly_rate = apr.to_f / 100 / 12
-
-prompt "How long is the duration of your loan in years"
-loan_months = ''
-loop do
-  loan_years = Kernel.gets().chomp()
-  if valid_float?(loan_years) && greater_than_0(loan_years)
-    loan_months = loan_years.to_f * 12
-    break
-  else
-    prompt "That is not a valid loan duration"
-    prompt "Please ensure that the loan duration is greater than 0"
+  prompt "How long is the duration of your loan in years"
+  loan_months = ''
+  loop do
+    loan_years = Kernel.gets().chomp()
+    if valid_float?(loan_years) && greater_than_0(loan_years)
+      break
+    else
+      prompt "That is not a valid loan duration"
+      prompt "Please ensure that the loan duration is greater than 0"
+    end
   end
+  monthly_rate = apr.to_f / 100 / 12
+  loan_months = loan_years.to_f * 12
+  loan_amount = loan_amount.to_f
+
+  # monthly paymeny calculation
+  # (1 - (1 + monthly_rate)**(-loan_months)))
+  prompt "Thank you, calculator will now begin to calculate your monthly payment!"
+
+  monthly_payment = loan_amount * (monthly_rate / (1 - (1 + monthly_rate)**(-loan_months)))
+  prompt "Your monthly payment is #{monthly_payment}"
+
+  # repeat calculation or end program
+  prompt "Enter 'y' if you would like to perform a new calculation"
+
+  repeat = Kernel.gets().chomp()
+  break unless repeat.downcase().start_with?('y')
 end
-
-# monthly paymeny calculation
-# (1 - (1 + monthly_rate)**(-loan_months)))
-prompt "Thank you, calculator will now begin to calculate your monthly payment!"
-
-puts "#{loan_amount}, #{loan_months}. #{monthly_rate}"
