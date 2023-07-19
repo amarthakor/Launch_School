@@ -47,7 +47,6 @@ def prompt(message)
 end
 
 def valid_float?(number)
-  number.to_f.to_s == number
   number.to_f
 end
 
@@ -55,12 +54,11 @@ def greater_than_0(number)
   number.to_f > 0
 end
 
-# insure loan is greater > 0
-
 loan_amount = ''
 apr = ''
 loan_years = ''
 monthly_payment = ''
+loan_months = ''
 
 # main code
 prompt "Hello and welcome to mortgage loan calculator!"
@@ -91,7 +89,7 @@ loop do
   end
 
   prompt "How long is the duration of your loan in years"
-  loan_months = ''
+
   loop do
     loan_years = Kernel.gets().chomp()
     if valid_float?(loan_years) && greater_than_0(loan_years)
@@ -105,11 +103,12 @@ loop do
   loan_months = loan_years.to_f * 12
   loan_amount = loan_amount.to_f
 
-  # monthly paymeny calculation
-  # (1 - (1 + monthly_rate)**(-loan_months)))
-  prompt "Thank you, calculator will now begin to calculate your monthly payment!"
+  # monthly payment calculation
+  prompt "Calculating your monthly payment..."
 
-  monthly_payment = loan_amount * (monthly_rate / (1 - (1 + monthly_rate)**(-loan_months)))
+  monthly_payment = loan_amount *
+                    (monthly_rate /
+                     (1 - (1 + monthly_rate)**(-loan_months)))
   prompt "Your monthly payment is #{monthly_payment}"
 
   # repeat calculation or end program
