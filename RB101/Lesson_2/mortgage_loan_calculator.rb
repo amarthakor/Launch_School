@@ -42,8 +42,11 @@
 # - if no, terminate program
 # --------------------------------------------
 # methods
+require 'yaml'
+MESSAGES = YAML.load_file('mortgage_messages.yml')
+
 def prompt(message)
-  Kernel.puts("=> #{message}")
+  Kernel.puts("=> #{(MESSAGES[message])}")
 end
 
 def valid_float?(number)
@@ -61,42 +64,42 @@ monthly_payment = ''
 loan_months = ''
 
 # main code
-prompt "Hello and welcome to mortgage loan calculator!"
+prompt('welcome')
 
 loop do
-  prompt "What is the amount of your loan?"
+  prompt('loan_amount?')
 
   loop do
     loan_amount = Kernel.gets().chomp()
     if valid_float?(loan_amount) && greater_than_0(loan_amount)
       break
     else
-      prompt "That is not a valid loan amount"
-      prompt "Please ensure that the loan is greater than $0"
+      prompt('invalid_loan')
+      prompt('loan_greater_0')
     end
   end
 
-  prompt "What is the Anual Percentage Rate on your loan (in %)"
+  prompt('apr?')
 
   loop do
     apr = Kernel.gets().chomp()
     if valid_float?(apr) && greater_than_0(apr)
       break
     else
-      prompt "That is not a valid APR"
-      prompt "Please ensure that the APR that is greater than 0"
+      prompt('invalid_apr')
+      prompt('apr_greater_0')
     end
   end
 
-  prompt "How long is the duration of your loan in years"
+  prompt('loan_duration_yrs')
 
   loop do
     loan_years = Kernel.gets().chomp()
     if valid_float?(loan_years) && greater_than_0(loan_years)
       break
     else
-      prompt "That is not a valid loan duration"
-      prompt "Please ensure that the loan duration is greater than 0"
+      prompt('invalid_loan_duration')
+      prompt('loan_duration_0')
     end
   end
   monthly_rate = apr.to_f / 100 / 12
@@ -104,15 +107,15 @@ loop do
   loan_amount = loan_amount.to_f
 
   # monthly payment calculation
-  prompt "Calculating your monthly payment..."
+  prompt('calculating_monthly_payment')
 
   monthly_payment = loan_amount *
                     (monthly_rate /
                      (1 - (1 + monthly_rate)**(-loan_months)))
-  prompt "Your monthly payment is #{monthly_payment}"
-
+  prompt('monthly_payment')
+  Kernel.puts("$#{monthly_payment.round(2)}")
   # repeat calculation or end program
-  prompt "Enter 'y' if you would like to perform a new calculation"
+  prompt('repeat?')
 
   repeat = Kernel.gets().chomp()
   break unless repeat.downcase().start_with?('y')
