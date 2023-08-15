@@ -22,20 +22,31 @@ def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
+def winner(player, computer)
+  prompt("You win!") if
+  (player == 'rock' && computer == 'scissors') ||
+  (player == 'paper' && computer == 'rock') ||
+  (player == 'scissors' && computer == 'paper')
+end
+
+def loser(player, computer)
+  prompt("You lose!") if
+  (player == 'rock' && computer == 'paper') ||
+  (player == 'paper' && computer == 'scissors') ||
+  (player == 'scissors' && computer == 'rock')
+end
+
+def tie(player, computer)
+  prompt("It's a tie!") if
+  (player == 'rock' && computer == 'rock') ||
+  (player == 'paper' && computer == 'paper') ||
+  (player == 'scissors' && computer == 'scissors')
+end
+
 def display_results(player, computer)
-  if  (player == 'rock' && computer == 'scissors') ||
-    (player == 'paper' && computer == 'rock') ||
-    (player == 'scissors' && computer == 'paper')
-  prompt("You won!")
-elsif (player == 'rock' && computer == 'paper') ||
-      (player == 'paper' && computer == 'scissors') ||
-      (player == 'scissors' && computer == 'rock')
-  prompt("You lose!")
-else (player == 'rock' && computer == 'rock') ||
-    (player == 'paper' && computer == 'paper') ||
-    (player == 'scissors' && computer == 'scissors')
-  prompt("It's a tie!")
-  end
+  winner(player, computer)
+  loser(player, computer)
+  tie(player, computer)
 end
 
 loop do
