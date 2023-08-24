@@ -1,25 +1,15 @@
-# rock paper scissors game where:
-# user makes a choice
-# computer makes a choice
-# winner is determined
-# option to repeat?
 
-# inputs: - user choice of R/P/S
-#         - repeat?
-# outputs: - computer choice of R/P/S
-#          - winner displayed
-
-# PEDAC
-# Greet user
-# Ask user for r/p/s choice
-# computer picks r/p/s choice
-# winner is displayed
-# ask user if they would like to repeat
-
-VALID_CHOICES = ['rock', 'paper', 'scissors']
+VALID_CHOICES = ['rock', 'paper', 'scissors', 'spock', 'lizard']
 
 def prompt(message)
   Kernel.puts("=> #{message}")
+end
+
+def opening_prompt_
+  prompt("Welcome to rock, paper, scissors, lizard, spock!
+   In this game we will be competing against each other
+   The rules are simple - first to win 3 rounds will be declared the
+   winner")
 end
 
 def winner(player, computer)
@@ -49,6 +39,8 @@ def display_results(player, computer)
   tie(player, computer)
 end
 
+opening_prompt_
+
 loop do
   choice = ''
   loop do
@@ -63,6 +55,7 @@ loop do
   end
 
   computer = VALID_CHOICES.sample
+
   prompt("You chose #{choice}; computer chose #{computer}")
 
   display_results(choice, computer)
