@@ -1,40 +1,32 @@
 en:
-  name: "Whats your name?"
-  valid_name: "Please enter a valid name"
-  welcome: "Hello %{name} and welcome to calculator!"
-  number_1: "Please enter the first number"
-  invalid_num: "That doesn't appear to be a valid number, please try again"
-  number_2: "Please enter the second number"
-  number_choices: "You entered %{num1} and %{num2}"
-  operations_choice: "Which operation would you like to perform?\n
+  welcome: "Welcome to Calculator! Please enter your name"
+  invalid_name: "Please enter a valid name"
+  get_num1: "What is your first number?"
+  get_num2: "What is your second number?"
+  invalid_number: "Oops! That is not a valid number, please try again!"
+  operation_choice_prompt: "Which operation would you like to perform?\n
       Press 1 for addition\n
       Press 2 for subtraction\n
       Press 3 for multiplication\n
       Press 4 for division"
-  invalid_operation: "Error, that is not a possible operation, please try again"
-  zero_div_error: "You can't divide a number by 0, please reenter the second 
-    number"
-  operation_process: "%{operation_to_message(operation)} the two numbers..."
+  invalid_operator: "Please choose 1, 2, 3, or 4"
+  zero_div_error: "Error, you cannot divide a number by 0"
   result: "The result is %{result}"
-  another_calculation?: "Would you like to preform another calculation? Press 'y'
-    to restart"
-  end_prompt: "Thank you for using calculator %{name}, have a great day!"
-es: 
-  name: "¿Cómo se llama?"
-  valid_name: "Por favor ingrese un nombre valido"
-  welcome: "Hola %{name} y bienvenido a la calculadora!"
-  number_1: "Por favor introduzca el primer número"
-  invalid_num: "No parece ser un número válido, inténtalo de nuevo"
-  number_2: "Por favor, introduzca el segundo número"
-  number_choices: "Has introducido %{num1} y %{num2}"
-  operations_choice: "¿Qué operación le gustaría realizar?\n
+  repeat_calc: "Did you need to perform another calculation? (Press 'Y' to restart)"
+  end_prompt: "Thank you for using Calculator today %{name}, have a great day!"
+es:
+  invalid_name: "Por favor ingrese un nombre valido"
+  welcome: "Hola y bienvenido a la calculadora! Por favor entre su nombre"
+  get_num1: "Por favor introduzca el primer número"
+  invalid_number: "No parece ser un número válido, inténtalo de nuevo"
+  get_num2: "Por favor, introduzca el segundo número"
+  operation_choice_prompt: "¿Qué operación le gustaría realizar?\n
       Presione 1 para agregar\n
       Presione 2 para restar\n
       Presione 3 para multiplicar\n
       Presione 4 para la división"
   invalid_operation: "Error, esa no es una operación posible, inténtelo de nuevo"
-  zero_div_error: "No puedes dividir un número entre 0, vuelve a introducir el segundo número"
-  operation_process: "%{operation_to_message(operation)} los dos números..."
+  zero_div_error: "Error, no puedes dividir un número entre 0"
   result: "El resultado es %{result}"
-  another_calculation?: "¿Le gustaría realizar otro cálculo? Presione 'y' para reiniciar"
+  repeat_calc: "¿Le gustaría realizar otro cálculo? Presione 'Y' para reiniciar"
   end_prompt: "Gracias por usar la calculadora %{name}, ¡que tengas un gran día!"
