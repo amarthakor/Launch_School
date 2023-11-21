@@ -1,10 +1,3 @@
-def empty_array(arr)
-  array = []
-  if arr.empty?
-    array
-  end
-end
-
 def find_missing_letter(array)
   first = array[0]
   last = array.last
@@ -25,8 +18,8 @@ def reverse_case(letter)
 end
 
 def missing_letter(array)
-  if empty_array(array)
-    array
+  if array.empty?
+    return []
   else
     find_missing_letter(array)
   end
@@ -36,4 +29,3 @@ p missing_letter(['a', 'b', 'c', 'd', 'f']) == 'E'
 p missing_letter(['o', 'q', 'r','s']) == 'P'
 p missing_letter(['H', 'J', 'K', 'L']) == 'i'
 p missing_letter([]) == []
-
