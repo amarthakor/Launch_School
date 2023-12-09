@@ -1,14 +1,11 @@
-# Write a method that takes a string argument, and returns true if all 
-# of the alphabetic characters inside the string are uppercase, false 
-# otherwise. Characters that are not alphabetic should be ignored.
+# Write a method that returns true if its integer argument is palindromic,
+# false otherwise. A palindromic number reads the same forwards and backwards.
 
-def uppercase?(string)
-  string == string.upcase
+def palindromic_number?(num)
+  num.to_s.reverse.to_i == num
 end
 
-puts uppercase?('t') == false
-puts uppercase?('T') == true
-puts uppercase?('Four Score') == false
-puts uppercase?('FOUR SCORE') == true
-puts uppercase?('4SCORE!') == true
-puts uppercase?('') == true
+puts palindromic_number?(34543) == true
+puts palindromic_number?(123210) == false
+puts palindromic_number?(22) == true
+puts palindromic_number?(5) == true
