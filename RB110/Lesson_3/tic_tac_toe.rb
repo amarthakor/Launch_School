@@ -76,6 +76,7 @@ def computer_takes_turn!(brd)
   prompt "Now it's computers turn!"
   tile = empty_squares(brd).sample
   brd[tile] = COMPUTER_MARKER
+  display_board(brd)
 end
 
 def board_full?(brd)
@@ -114,6 +115,16 @@ def joinor(brd)
   end
 end
 
+def display_winner(player, computer)
+  if player == 5
+    prompt "You've won!!!"
+  elsif computer == 5
+    prompt "Oh no, you lost and computer won!"
+  else
+    prompt "It's a tie!!"
+  end
+end
+
 prompt "Welcome to tic tac toe! The first player to get three in a row of any
         row, coloumn, or diagonal line, for a total of 5 times wins!"
 sleep(8)
@@ -130,30 +141,29 @@ loop do
     prompt "Your score: #{player}! Computer score: #{computer}!"
 
     player_takes_turn!(board)
-    if winner?(board) || board_full?(board)
+    if winner?(board)
       player += 1
       break if player >= 5
+      board = initialize_board
+      next
+    elsif board_full?(board)
       board = initialize_board
       next
     end
 
     computer_takes_turn!(board)
-    if winner?(board) || board_full?(board)
+    if winner?(board)
       computer += 1
       break if computer >= 5
+      board = initialize_board
+    elsif board_full?(board)
       board = initialize_board
     end
   end
 
   display_board(board)
 
-  if player == 5
-    prompt "You won!"
-  elsif computer == 5
-    prompt "Computer won!"
-  else
-    prompt "It's a tie!"
-  end
+  display_winner(player, computer)
 
   answer = play_again?
   break if !answer.start_with?('Y')
