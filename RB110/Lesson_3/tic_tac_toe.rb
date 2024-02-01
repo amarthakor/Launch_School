@@ -63,7 +63,6 @@ end
 def player_takes_turn!(brd)
   tile = 0
   loop do
-    # prompt "Please mark a tile! #{empty_squares(brd).join(', ')}"
     prompt "Please mark a tile! #{joinor(brd)}"
     tile = gets.chomp.to_i
     break if empty_squares(brd).include?(tile)
@@ -103,34 +102,55 @@ def play_again?
   gets.chomp.upcase
 end
 
+def select_values(brd)
+  brd.keys.select { |num| brd[num] == INITIAL_MARKER }
+end
+
 def joinor(brd)
-  if brd.keys.select { |num| brd[num] == INITIAL_MARKER }.size <= 2
-    brd.keys.select { |num| brd[num] == INITIAL_MARKER }.join(', ')
+  if select_values(brd).size <= 2
+    select_values(brd).join(', ')
   else
-    brd.keys.select { |num| brd[num] == INITIAL_MARKER }.insert(-2, 'or').join(', ')
+    select_values(brd).insert(-2, 'or').join(', ')
   end
 end
+
+prompt "Welcome to tic tac toe! The first player to get three in a row of any
+        row, coloumn, or diagonal line, for a total of 5 times wins!"
+sleep(8)
 
 # begin program execution
 loop do
   board = initialize_board
 
+  player = 0
+  computer = 0
   # main code loop
   loop do
     display_board(board)
+    prompt "Your score: #{player}! Computer score: #{computer}!"
 
     player_takes_turn!(board)
-    break if winner?(board) || board_full?(board)
+    if winner?(board) || board_full?(board)
+      player += 1
+      break if player >= 5
+      board = initialize_board
+      next
+    end
 
     computer_takes_turn!(board)
-    display_board(board)
-    break if winner?(board) || board_full?(board)
+    if winner?(board) || board_full?(board)
+      computer += 1
+      break if computer >= 5
+      board = initialize_board
+    end
   end
 
   display_board(board)
 
-  if winner?(board)
-    prompt "#{detect_winner(board)} won!"
+  if player == 5
+    prompt "You won!"
+  elsif computer == 5
+    prompt "Computer won!"
   else
     prompt "It's a tie!"
   end
