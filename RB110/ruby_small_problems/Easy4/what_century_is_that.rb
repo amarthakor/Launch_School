@@ -52,3 +52,42 @@ p century(1965)
 p century(256)
 p century(5)
 p century(10103)
+
+Write a method that takes a year as input and returns the century. 
+The return value should be a string that begins with the century number,
+ and ends with st, nd, rd, or th as appropriate for that number.
+
+New centuries begin in years that end with 01. So, the years 
+1901-2000 comprise the 20th century.
+
+=begin
+--- P
+Create a method that takes a year (integer argument) and returns the century
+of that year. The return value (century) should be a string value and end with
+'st', 'nd', 'rd', or 'th' as needed (i.e., 21st, 23rd, 31st, 11th 12th). Finally,
+a new century begins on years that end in '01', i.e. 2001, 1901, 2201
+
+INPUT: integer
+OUTPUT: string
+
+--- E
+century(2000) == '20th'
+century(2001) == '21st'
+century(1965) == '20th'
+century(256) == '3rd'
+century(5) == '1st'
+century(10103) == '102nd'
+century(1052) == '11th' end in 
+century(1127) == '12th'
+century(11201) == '113th'
+
+--- D
+
+
+--- A
+
+
+--- C
+
+
+=end
