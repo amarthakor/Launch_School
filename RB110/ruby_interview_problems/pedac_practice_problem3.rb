@@ -13,4 +13,5 @@ p wave("codewars") == ["Codewars", "cOdewars", "coDewars", "codEwars", "codeWars
 p wave("") == []
 p wave("two words") == ["Two words", "tWo words", "twO words", "two Words", "two wOrds", "two woRds", "two worDs", "two wordS"]
 p wave(" gap ") == [" Gap ", " gAp ", " gaP "]
+
 =end

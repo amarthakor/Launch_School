@@ -52,10 +52,13 @@ end: array or string
 
 --- A
 - RETURN 'not valid' if arg 1 or 2 are strings
+- RETURN 'not valid' if arg1/2 are negative
+  - arg1 != arg1.abs
 - INITIALIZE results array
 - FIND x amount of palindromic numbers, as specified by argument 2
   - loop over first argument
     - check if current arg is a palindrome ( num.to_s == num.to_s.reverse)
+    - check if the current arg is at least 2 digits long
       - if so, append to results
     - increment num by += 1 each iteration
     - break loop once results array size is equal to argument 2
@@ -64,10 +67,11 @@ end: array or string
 
 def palindrome(num, size)
   return "Not valid" if num.class == String || size.class == String
+  return "Not valid" if num != num.abs || size != size.abs
   results_arr = []
 
   loop do
-    results_arr << num if num.to_s == num.to_s.reverse
+    results_arr << num if num.to_s == num.to_s.reverse && num.to_s.length > 1
     num += 1
     break if results_arr.size == size
   end
@@ -75,7 +79,13 @@ def palindrome(num, size)
   results_arr
 end
 
+p palindrome(6,4) == [11,22,33,44]
 p palindrome(59,3)  == [66,77,88]
 p palindrome(101,2)  == [101,111]
 p palindrome("15651",5)  == "Not valid" 
 p palindrome(1221,"8") == "Not valid"
+
+p palindrome(-1,5) == "Not valid"
+p palindrome(-1,-5) == "Not valid"
+p palindrome(1,-5) == "Not valid"
+p palindrome(6,0) == []
