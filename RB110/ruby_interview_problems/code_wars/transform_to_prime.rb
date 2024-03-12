@@ -13,7 +13,8 @@ so that sum of all elements of list should equal the closest prime number .
         - such that the sum of the array elements should equal the closest prime number
 
 - prime number is number that is divisible by itself and 1 ONLY
-  - 1, 2, 3, 5, 7, 11, 13, 17, 19...
+  - 2, 3, 5, 7, 11, 13, 17, 19...
+- 1 is NOT a prime number
 - arrays will have at least 2 integers
 - no negative numbers will be included
 - new arrays total sum should equal the closest prime number
@@ -34,6 +35,14 @@ intermediate: remain in array to find sum easily
 end: integer
 
 --- A
+- CHECK if a given num is a prime number
+  - 
+    - check if the number is evenly disivible by 1, 2, 3, 4, 5, 6, 7, 8, 9
+      - if the num is only divisible by 1 and itself ( 2 nums )
+        - it is prime
+      - if the num is divisible by more than 2 factors
+        - it is not prime
+
 - return 0 if the sum of the array is a prime number
 - SUM the given array
 - ITERATE over the sum where
@@ -45,15 +54,25 @@ end: integer
 =end
 
 def minimum_number(array)
+  return 0 if is_prime?(array.sum)
+  arr_total = array.sum
 
+  loop do
+    arr_total += 1
+    return arr_total - array.sum if is_prime?(arr_total)
+  end
+  
 end
 
 def is_prime?(num)
-
+  factors = (1..num).to_a
+  factors.map do |factor|
+    num % factor  == 0
+  end.count(true) == 2
 end
 
-p minimum_numbere([3, 1, 2]) #== 1
-# p minimum_number([5,2]) # == 0
-# p minimum_number([1,1,1]) # == 0
-# p minimum_number([2,12,8,4,6]) # == 5
-# p minimum_number([50,39,49,6,17,28]) # == 2
+p minimum_number([3, 1, 2]) == 1
+p minimum_number([5,2]) == 0
+p minimum_number([1,1,1]) == 0
+p minimum_number([2,12,8,4,6]) == 5
+p minimum_number([50,39,49,6,17,28]) == 2

@@ -79,13 +79,13 @@ def palindrome(num, size)
   results_arr
 end
 
-p palindrome(6,4) == [11,22,33,44]
-p palindrome(59,3)  == [66,77,88]
-p palindrome(101,2)  == [101,111]
-p palindrome("15651",5)  == "Not valid" 
-p palindrome(1221,"8") == "Not valid"
+p palindrome(6,4) == [11,22,33,44] # true
+p palindrome(59,3)  == [66,77,88] # true
+p palindrome(101,2)  == [101,111] # true
+p palindrome("15651",5)  == "Not valid"  # true
+p palindrome(1221,"8") == "Not valid" # true
 
-p palindrome(-1,5) == "Not valid"
-p palindrome(-1,-5) == "Not valid"
-p palindrome(1,-5) == "Not valid"
-p palindrome(6,0) == []
+p palindrome(-1,5) == "Not valid" # true
+p palindrome(-1,-5) == "Not valid" # true
+p palindrome(1,-5) == "Not valid" # true
+p palindrome(6,0) == [] # true
