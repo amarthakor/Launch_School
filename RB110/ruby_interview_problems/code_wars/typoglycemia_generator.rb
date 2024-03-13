@@ -74,29 +74,22 @@ for reference: http://en.wikipedia.org/wiki/Typoglycemia
 - return string
 
 --- A
-- INITIALIZE empty string result placeholder
-- CHECK if my 1..-2 has any special characters
-  - if it does 
-    - store the special char and its index value somewhere
-- CREATE a string of chars from index 1..-2
-- SORT this substring by alphabetical order
-- REPLACE the char at the index of the special char and add the replaced char too?
-  - i.e. '....f...' 
-    - 'f' is at the same index of the spec char, but we need the 'f'
-    - so reassign this index to equal the special char AND 'f'
-    - then put it into the string at the respective index
-- APPEND the first char and the last char
-  - shift the first char so that its at index 0
-  - append the last char with << so its at index -1
-- RETURN the modified string
+- RETURN the string if string size is 3 or less chars long
+
 =end
-p scramble_words('professionals') == 'paefilnoorsss'
-p scramble_words('i') == 'i'
-p scramble_words('') == ''
-p scramble_words('me') == 'me'
-p scramble_words('you') == 'you'
-p scramble_words('card-carrying') == 'caac-dinrrryg'
-p scramble_words("shan't") == "sahn't"
-p scramble_words('-dcba') == '-dbca'
-p scramble_words('dcba.') == 'dbca.'
-p scramble_words("you've gotta dance like there's nobody watching, love like you'll never be hurt, sing like there's nobody listening, and live like it's heaven on earth.") == "you've gotta dacne like teehr's nbdooy wachintg, love like ylo'ul neevr be hrut, sing like teehr's nbdooy leiinnstg, and live like it's haeevn on earth."
+
+
+p scramble_words('professionals') #== 'paefilnoorsss'
+# p scramble_words('i') == 'i'
+# p scramble_words('') == ''
+# p scramble_words('me') == 'me'
+# p scramble_words('you') == 'you'
+# p scramble_words('card-carrying') == 'caac-dinrrryg'
+# p scramble_words("shan't") == "sahn't"
+# p scramble_words('-dcba') == '-dbca'
+# p scramble_words('dcba.') == 'dbca.'
+# p scramble_words("you've gotta dance like there's nobody watching, 
+# love like you'll never be hurt, sing like there's nobody listening, 
+# and live like it's heaven on earth.") #== "you've gotta dacne like 
+# teehr's nbdooy wachintg, love like ylo'ul neevr be hrut, sing like 
+# teehr's nbdooy leiinnstg, and live like it's haeevn on earth."

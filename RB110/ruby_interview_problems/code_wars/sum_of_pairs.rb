@@ -48,31 +48,44 @@ ending: array
 def sum_pairs(array, sum)
   idx_values = []
   pair_combos = []
-  array.size.times do |start_idx|
-    (start_idx + 1).upto(array.size - 1) do |end_idx|
-      pair_combos << [array[start_idx], array[end_idx]]
-      idx_values << [start_idx, end_idx]
-    end
-  end
-
-  correct_idx_values = idx_values.select do |subarr|
-    array[subarr[0]] + array[subarr[1]] == sum
-  end
-
   final_pair = []
-  current_value = correct_idx_values.map { |subarr| subarr[1] }.max
 
-  correct_idx_values.each do |subarr|
-    if subarr[1] < current_value
-      final_pair = subarr
-    end
-  end
-
+  make_pairs(array, idx_values, pair_combos)
 
   results = pair_combos.select { |pairs| pairs.sum == sum }
-  return results.flatten if results.size == 1
   return nil if results.empty?
-  ([array[final_pair[0]], array[final_pair[1]]])
+
+  valid_indices = find_valid_indices(array, sum, idx_values)
+
+  current_value = valid_indices.map { |subarr| subarr[1] }.max
+
+  valid_indices.each { |subarr| final_pair = subarr if subarr[1] < current_value }
+
+  return results.flatten if results.size == 1
+  return_final_pair(array, final_pair)
+end
+
+def make_pairs(arr, indices, pairs)
+  arr.size.times do |start_idx|
+    (start_idx + 1).upto(arr.size - 1) do |end_idx|
+      pairs << [arr[start_idx], arr[end_idx]]
+      indices << [start_idx, end_idx]
+    end
+  end
+end
+
+def find_valid_indices(arr, sum, indices)
+  indices.select do |subarr|
+    arr[subarr[0]] + arr[subarr[1]] == sum
+  end
+end
+
+def find_correct_indices(indices, results_arr, max_index)
+  indices.each { |subarr| results_arr = subarr if subarr[1] < max_index }
+end
+
+def return_final_pair(arr, indices)
+  ([arr[indices[0]], arr[indices[1]]])
 end
 
 
