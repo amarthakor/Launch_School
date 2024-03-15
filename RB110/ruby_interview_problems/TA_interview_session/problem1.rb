@@ -1,7 +1,7 @@
 =begin
 # Given an array of numbers, return true if any 5 consecutive numbers 
 are greater than 3. If there are less than 5 numbers in the array, return 
-true if all are greater than 3. -- Amar
+true if all are greater than 3.
 
 # Test cases
 puts check_consecutive_numbers([4, 5, 6, 7, 8]) # true
