@@ -69,12 +69,14 @@ def letter_percentages(string)
     lower_chars += 1 if LOWER_ALPHA.include?(char)
     upper_chars += 1 if UPPER_ALPHA.include?(char)
   end
+
   neither_chars = total_chars - (upper_chars + lower_chars)
 
   results[:lowercase] = (lower_chars / total_chars) * 100
   results[:uppercase] = (upper_chars / total_chars) * 100
   results[:neither] = (neither_chars / total_chars) * 100
-  results 
+
+  results
 end
 
 p letter_percentages('abCdef 123') == { lowercase: 50.0, uppercase: 10.0, neither: 40.0 }
