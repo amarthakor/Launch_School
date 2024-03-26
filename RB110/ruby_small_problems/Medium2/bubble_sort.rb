@@ -32,38 +32,46 @@ array = %w(Sue Pete Alice Tyler Rachel Kim Bonnie)
 bubble_sort!(array)
 array == %w(Alice Bonnie Kim Pete Rachel Sue Tyler)
 
---- P
-- given: array of various elements
-- return: return the original array sorted
-        - mutate original array
-        - array will contain at least 2 elements
-        - create bubble sort method
+Problem: Given an array of objects, return the array sorted from least -> greatest
 
-- bubble sort works by making multiple iterations
-- current ele is compared to next ele
-- if current ele is > next ele
-  - current ele and next ele flip positions
-- this process repeats until a complete pass is made w/o performing any swaps
+Rules:
+- Array contains at least 2 elements
+- Mutate the array
+- sort the array until no more swaps are made
+- sort from least to greatest
 
---- E
-arr([5, 3]) -> [3, 5]
 
-- [6, 1, 2, 4, 7] -> [1, 2, 4, 6, 7]
-
---- D
-beginning: array of elements
-middle: array to cotinue iterating over elements
-end: mutated array
-
---- A
-
+Algorithm:
+- ITERATE over the given array
+  - for each object
+    - start off at index 0 and interate through the entire array
+    - compare the current idx to the next idx, if curR_idx > next_idx
+      - swap next_idx w/ curr_idx position
+    - move onto next_idx and next_next_idx
+      - repeat subprocess
+    - repeat this process until last integer is reached
+  - move to the next integer and repeat all sub processes
 
 =end
 
+
 def bubble_sort!(array)
-  
+  loop do 
+
+    swapped = false
+
+      1.upto(array.size - 1) do |index|
+        next if array[index - 1] <= array[index]
+        array[index - 1], array[index] = array[index], array[index - 1]
+        swapped = true
+      end
+
+    break unless swapped
+  end
+
+  array
 end
 
-# p bubble_sort!([5, 3]) # == [3, 5]
-# p bubble_sort!([6, 2, 7, 1, 4]) # == [1, 2, 4, 6, 7]
+p bubble_sort!([5, 3]) # == [3, 5]
+p bubble_sort!([6, 2, 7, 1, 4]) # == [1, 2, 4, 6, 7]
 p bubble_sort!(%w(Sue Pete Alice Tyler Rachel Kim Bonnie)) # == [Alice, Bonnie, Kim, Pete, Rachel, Sue, Tyler]

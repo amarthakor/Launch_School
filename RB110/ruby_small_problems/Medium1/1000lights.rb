@@ -20,61 +20,72 @@ The result is that 2 lights are left on, lights 1 and 4. The return value is [1,
 
 With 10 lights, 3 lights are left on: lights 1, 4, and 9. The return value is [1, 4, 9].
 
---- P
-- GIVEN: integer that represents the total number of light switches
-- RETURN: array that represents which lights are on after 'n' repetitions.
-  - all light switches from 1..n are initially turned off
-  - first round flip them all on: 1, 2, 3, 4, 5
-  - second round flip multiples of 2 on/off: 1, 3, 5
-  - third round flip multiples of 3 on/off: 1, 5
-  - fourth rounf flip multiples of 4 on/off: 1, 4, 5
-  - fifth round flip multiples of 5 on/off: 1, 4
-  therefore return [1, 4]
+Problem: Given an integer, return an array of integers
 
---- E
-- as above
+Rules:
+- The argument represents the total number of switches for light bulbs
+- The return array represents which lightbulbs are turned "on"
+- On the first pass, you toggle all lights. Since they are initially all off,
+  you turn them all on
+- On the next pass, you toggle switches 2, 4, 6... since they are "on", you
+  have just turned them off
+- On the next pass you toggle swtiches 3, 6, 9.. etc..
+- you repeat this process until you have done 'n' passes/repetitions
 
---- D
-beginning: integer
-middle: array to initiate some form of iteration 
-end: array
+- Whatever the integer argument is will represent how many repetitions/iterations
+  there are
+- Since some numbers will be divisble by multiple factors, they may get turned
+  on or off multiple times
+    - i.e. First pass : [1, 2, 3, 4, 5, 6] are on
+           Second pass: [1, 3, 5]          are on (turned off 2, 4, 6)
+           Third pass : [1, 5, 6]          are on (turned off 3, turned on 6)
+           Fourth pass: [1, 4, 5, 6]       are on (turned on 4)
+           Fifth pass : [1, 4, 6]          are on (turned off 5)
+           Sixth pass : [1, 4]             are on (turned off 6)
 
---- A
-- RETURN [1] if given integer is equal to 1
-- CREATE a comparison array from 1..n
-- CREATE duplicate of original array
-- ITERATE n times on the array, from 2 #upto n
-  - EMPLOY conditional to check if current value is present in array
-    - if it is, remove multiples of current value from array
-    - if it is not, add multiples of said value to array
-- RETURN array
+- Will have to figure out how to add/ remove a number multiple times
+- Going to increase in switches toggled by +1 each pass until
+  the pass represented by given integer is reached
+- Need a way to create all switches
+- Need to represent the current multiple and increment it by 1 each pass
+- If a number is already "on" or "in" the array, I need to remove it
+- If a number is "off" or "out" of the array, I need to include it
+- So for each "number" or iteration
+  - I need to figure out which multiples of a factor are being toggled
+  - Need to figure out how to check if the multiple is "in" or "out"
+  - Then I need to add / remove it
+
+- 1 will ALWAYS remain "in" or turned "on"
+Algorithm:
+- CREATE an array of digits from 1 to 'n'#
+- ITERATE 'n' times
+  - for each number
+    - CHECK if each multiples of the current num upto 'n' are in the array
+      - if they are not, add them in
+      - if they are, remove them
+  - repeat for every digit in the array
+
 
 =end
 
 def lights(switches)
-  return [1] if switches == 1
-  comparison_array = (1..switches).to_a
-  results_array = comparison_array.dup
-  2.upto(switches + 1) do |round| # only considers current num, not all multiples of num.. need to fix
-    p round
-    if results_array.include?(round)
-      results_array.delete_if { |lights| lights % round == 0 }
-      p results_array
-    else 
-      comparison_array.each { |num| results_array << num if p (num % round == 0) }
-      p results_array
+  all_lights = (1..switches).to_a
+  copy_arr = all_lights.dup
+
+    2.upto(switches) do |factor|
+      copy_arr.each do |num|
+        if num % factor == 0 && all_lights.include?(num)
+          all_lights.delete(num)
+        elsif num % factor == 0
+          all_lights << num
+        end
+      end
     end
-  end
-  results_array
+
+    all_lights
 end
 
-# p lights(1) == [1]
-# p lights(5) #== [1, 4]
-lights(10) #== [1, 4, 9]
 
-# 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-
-# - 2) 1, 3, 5, 7, 9, 
-# - 3) 1, 5, 7, 
-# - 4) 1, 4, 7, 8, 
-# - 5) 1, 4, 5, 7, 8, 10
+p lights(1) == [1]
+p lights(5) == [1, 4]
+p lights(10) == [1, 4, 9]
