@@ -14,7 +14,10 @@ p numbers_from_string('12abc7f24ghi1678!') == [12, 24, 1678]
 
 
 =begin
-Given a string that includes alphanumeric characters ("3a4B2d") return the expansion of that string: The numeric values represent the occurrence of each letter preceding that numeric value. There should be no numeric characters in the final string.
+Given a string that includes alphanumeric characters ("3a4B2d") return the 
+expansion of that string: The numeric values represent the occurrence of each 
+letter preceding that numeric value. There should be no numeric characters in the 
+final string.
 
 p str_expansion("3D2a5d2f") == "DDDaadddddff"
 p str_expansion("3abc") == "aaabbbccc"
