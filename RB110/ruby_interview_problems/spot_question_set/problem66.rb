@@ -22,3 +22,14 @@ final string.
 p str_expansion("3D2a5d2f") == "DDDaadddddff"
 p str_expansion("3abc") == "aaabbbccc"
 p str_expansion("3d332f2a") == "dddffaa"
+=end
+
+=begin
+# Given a collection of integers, write a method to return a new collection 
+# of every unique contiguous subarray in that collection with an even sum. 
+# The returned subarrays can be in any order.
+
+p even_subs([1, 1, 1, 1, 1]).sort #== [[1, 1], [1, 1, 1, 1]]
+p even_subs([1, 2, 3, 4, 5]).sort #== [[1, 2, 3], [1, 2, 3, 4], [2], [2, 3, 4, 5], [3, 4, 5], [4]]
+p even_subs([88, 54, 67, 56, 36]).sort #== [[36], [54], [56], [56, 36], [88], [88, 54]]
+end

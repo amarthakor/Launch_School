@@ -3,7 +3,7 @@ Write a method that rotates an array by moving the first element to the
 end of the array. The original array should not be modified.
 
 Do not use the method Array#rotate or Array#rotate! for your implementation.
-
+6:52pm
 Example:
 rotate_array([7, 3, 5, 2, 9, 1]) == [3, 5, 2, 9, 1, 7]
 rotate_array(['a', 'b', 'c']) == ['b', 'c', 'a']
@@ -13,50 +13,25 @@ x = [1, 2, 3, 4]
 rotate_array(x) == [2, 3, 4, 1]   # => true
 x == [1, 2, 3, 4]                 # => true
 
---- P
-- GIVEN: array of objects
-- RETURN: a new array with all the objets rotated
-          - rotated means the first element becomes the last element
-            - dont have to actually shift each element
-          - cannot modify original array
-          - cant use #rotate or #rotate!
+Problem: Given an array of elements, return a new array
 
-- assume array will have at least one element
---- E
-rotate_array(['a', 'b', 'c']) == ['b', 'c', 'a']
-  - take element at index 0 and move to index -1
-  - return new array
-rotate_array(['a']) == ['a']
-  - if only 1 element array, just RETURN original array
+Rules:
+- Given array should not be modified
+- Return new array
+  - New array should consist of same elements as original array
+  - New array should rotate first element to end of array
+- Cannot use #rotate/rotate!
 
-
---- D
-begin: array
-mid: array to fulfill problem requriements and allow easy array modifiaction
-end: array
-
---- A
-- RETURN given array if array size is 1 element
-- CREATE new array
-- MODIFY new array to have given_array[1..-1]
-  - maybe iterate thru and move all elements except index 0
-- APPEND index 0 to new array
-- RETURN new array
+Algorithm:
+- CREATE a new array containing elements fomr the original at 1..-1
+- ADD the first element to the end of the newly created array
 
 =end
 
 def rotate_array(array)
-  RETURN array if array.size == 1
-  results_array = []
-
-  array.each_with_index do |el, idx| 
-    next if idx == 0
-    results_array << el
-  end
-
-  results_array << array[0]
+  new_array = array[1..-1] << array[0]
 end
 
-x = [1, 2, 3, 4]
-p rotate_array(x) == [2, 3, 4, 1]   # => true
-x == [1, 2, 3, 4] 
+p rotate_array([7, 3, 5, 2, 9, 1]) == [3, 5, 2, 9, 1, 7]
+p rotate_array(['a', 'b', 'c']) == ['b', 'c', 'a']
+p rotate_array(['a']) == ['a']

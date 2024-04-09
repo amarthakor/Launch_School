@@ -49,16 +49,6 @@ Algorithm:
   
 =end
 
-# last_char = string.size - 1
-#   letters.each do |char|
-#     next if (string.delete(' ')).size <= char_limit
-#     if char == 'e'
-#       string = string.chars
-#       string.delete_at(last_char)
-#       string = string.join
-#     end
-#     last_char -=1
-#   end
 
 def delete_vowel(string, vowel, limit)
   last_char = string.size - 1
@@ -79,7 +69,6 @@ end
 
 def minimum_shorten(string, char_limit)
   return '' if (string.chars - ['a', 'e', 'i', 'o', 'u']).size > char_limit
-  letters = string.chars.reverse
 
   string = delete_vowel(string, 'a', char_limit)
 

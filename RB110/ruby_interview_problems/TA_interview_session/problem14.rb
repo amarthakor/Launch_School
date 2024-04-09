@@ -20,6 +20,19 @@ Algorithm:
 - JOIN the array of words into a string
 =end
 
+# def capitalize(string)
+#   vowels = ['a', 'i', 'o', 'u', 'e']
+#   words = string.split(' ')
+#   words.each_with_index do |word, idx|
+#     break if idx == words.size - 1
+
+#     if vowels.include?(words[idx + 1][0])
+#       word[0] = word[0].upcase
+#     end
+#   end
+#   words.join(' ')
+# end
+
 def capitalize(string)
   string = string.split
 
