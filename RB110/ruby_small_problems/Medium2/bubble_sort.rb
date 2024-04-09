@@ -42,36 +42,31 @@ Rules:
 
 
 Algorithm:
-- ITERATE over the given array
-  - for each object
-    - start off at index 0 and interate through the entire array
-    - compare the current idx to the next idx, if curR_idx > next_idx
-      - swap next_idx w/ curr_idx position
-    - move onto next_idx and next_next_idx
-      - repeat subprocess
-    - repeat this process until last integer is reached
-  - move to the next integer and repeat all sub processes
+- SET a position counter to 0
+- LOOP over given array where
+  - while the position counter is less than the size of the array
+    - if index is 0 OR the current element is greater than or equal to the previous element
+      - increment position by += 1
+    - else
+      - swap the current element with the previous element
+      - decrement position by -= 1
 
 =end
 
-
 def bubble_sort!(array)
-  loop do 
-
-    swapped = false
-
-      1.upto(array.size - 1) do |index|
-        next if array[index - 1] <= array[index]
-        array[index - 1], array[index] = array[index], array[index - 1]
-        swapped = true
-      end
-
-    break unless swapped
+  position = 0
+  while position <= array.size - 1
+    if position == 0 || array[position] >= array[position - 1]
+      position += 1
+    else
+      array[position], array[position - 1] = array[position - 1], array[position]
+      position -= 1
+    end
   end
-
   array
 end
 
-p bubble_sort!([5, 3]) # == [3, 5]
-p bubble_sort!([6, 2, 7, 1, 4]) # == [1, 2, 4, 6, 7]
-p bubble_sort!(%w(Sue Pete Alice Tyler Rachel Kim Bonnie)) # == [Alice, Bonnie, Kim, Pete, Rachel, Sue, Tyler]
+
+p bubble_sort!([5, 3])  == [3, 5]
+p bubble_sort!([6, 2, 7, 1, 4])  == [1, 2, 4, 6, 7]
+p bubble_sort!(%w(Sue Pete Alice Tyler Rachel Kim Bonnie))  == %w(Alice Bonnie Kim Pete Rachel Sue Tyler)
