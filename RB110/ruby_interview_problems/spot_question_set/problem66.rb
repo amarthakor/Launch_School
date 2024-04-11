@@ -90,35 +90,62 @@ Algorithm:
 =end
 
 
-def sum_pairs(numbers, target)
-  valid_pairs = {}
+# def sum_pairs(numbers, target)
+#   valid_pairs = {}
 
-  numbers.size.times do |first_num|
-    (first_num + 1).upto(numbers.size - 1) do |second_num|
-      if numbers[first_num] + numbers[second_num] == target
-        valid_pairs[[numbers[first_num], numbers[second_num]]] = second_num
-      end
-    end
+#   numbers.size.times do |first_num|
+#     (first_num + 1).upto(numbers.size - 1) do |second_num|
+#       if numbers[first_num] + numbers[second_num] == target
+#         valid_pairs[[numbers[first_num], numbers[second_num]]] = second_num
+#       end
+#     end
+#   end
+
+#   valid_pairs.empty? ? nil : valid_pairs.sort_by {|k, v| v }[0][0]
+# end
+
+
+# l1= [1, 4, 8, 7, 3, 15]
+# l2= [1, -2, 3, 0, -6, 1]
+# l3= [20, -13, 40]
+# l4= [1, 2, 3, 4, 1, 0]
+# l5= [10, 5, 2, 3, 7, 5]
+# l6= [4, -2, 3, 3, 4]
+# l7= [0, 2, 0]
+# l8= [5, 9, 13, -3]
+
+# p sum_pairs(l1, 8) == [1, 7]
+# p sum_pairs(l2, -6) == [0, -6]
+# p sum_pairs(l3, -7) == nil
+# p sum_pairs(l4, 2) == [1, 1]
+# p sum_pairs(l5, 10) == [3, 7]
+# p sum_pairs(l6, 8) == [4, 4]
+# p sum_pairs(l7, 0) == [0, 0]
+# p sum_pairs(l8, 10) == [13, -3]
+
+=begin
+
+# CONVERT string into array of chars
+# SET new_string to ''
+# ITERATE over array of chars
+  - for each char up until the second to last char
+    - if the current char and the next char are the same
+      next
+    - else append hte current char to new_string
+  - if index is last char
+    - append the char to new_string
+=end
+
+def no_extra(string)
+  string = string.chars
+  no_dupes = ''
+
+  string.each_with_index do |char, idx|
+     char == string[idx + 1] ? next : no_dupes << char
   end
 
-  valid_pairs.empty? ? nil : valid_pairs.sort_by {|k, v| v }[0][0]
+  no_dupes
 end
 
-
-l1= [1, 4, 8, 7, 3, 15]
-l2= [1, -2, 3, 0, -6, 1]
-l3= [20, -13, 40]
-l4= [1, 2, 3, 4, 1, 0]
-l5= [10, 5, 2, 3, 7, 5]
-l6= [4, -2, 3, 3, 4]
-l7= [0, 2, 0]
-l8= [5, 9, 13, -3]
-
-p sum_pairs(l1, 8) == [1, 7]
-p sum_pairs(l2, -6) == [0, -6]
-p sum_pairs(l3, -7) == nil
-p sum_pairs(l4, 2) == [1, 1]
-p sum_pairs(l5, 10) == [3, 7]
-p sum_pairs(l6, 8) == [4, 4]
-p sum_pairs(l7, 0) == [0, 0]
-p sum_pairs(l8, 10) == [13, -3]
+p no_extra('bbbbbbbbb')
+p no_extra('wwooonndeerrfull woorrlldd')
