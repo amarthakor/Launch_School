@@ -136,6 +136,8 @@ Algorithm:
     - append the char to new_string
 =end
 
+=begin
+
 def no_extra(string)
   string = string.chars
   no_dupes = ''
@@ -149,3 +151,23 @@ end
 
 p no_extra('bbbbbbbbb')
 p no_extra('wwooonndeerrfull woorrlldd')
+
+=end
+
+DIGITS = ('0'..'9').to_a
+
+def order(words)
+  results = {}
+
+  words.split.each do |word|
+    word.chars.each do |char|
+      results[word] = char.to_i if DIGITS.include?(char)
+    end
+  end
+  
+  p results.sort_by { |k, v| v }.map { |pair| pair[0] }.join(' ')
+end
+
+
+
+p order("is2 Thi1s T4est 3a")
