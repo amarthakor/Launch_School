@@ -3,7 +3,7 @@
 
 # Given a sentence, find all pairs of words whose first letter matches
  the last letter of its pair. Return an empty array if there’s no such
-  pair. Only consider words that have at least length of 2 for the pairings.
+pair. Only consider words that have at least length of 2 for the pairings.
 
 
 Problem: Given a string, reutrn an array of subarrays containing words from the given string

@@ -154,6 +154,7 @@ p no_extra('wwooonndeerrfull woorrlldd')
 
 =end
 
+=begin
 DIGITS = ('0'..'9').to_a
 
 def order(words)
@@ -171,3 +172,77 @@ end
 
 
 p order("is2 Thi1s T4est 3a")
+=end
+
+=begin
+1:15
+
+Create a method that takes an array of integers as an argument. Determine 
+and return the index N for which all numbers with an index less than N sum 
+to the same value as the numbers with an index greater than N. If there is 
+no index that would make this happen, return -1.
+
+If you are given an array with multiple answers, return the index with the 
+smallest value.
+
+The sum of the numbers to the left of index 0 is 0. Likewise, the sum of the
+numbers to the right of the last element is 0.
+
+
+Problem: Given a array of integers, return an itneger
+
+Rules:
+- Find the index at which
+  - all numbers to the left of the current index sum and all numbers to the right of the current index sum
+    are equivalent
+- IF there are no indices at which this occurs return -1
+
+- IF there are multiple indices that fufill this condition, i want return the smallest index
+- numbers to the left of index 0 sum to 0 and same for numbers to the right of the last elemtn
+  - first element left sum is 0, last element right sum is 0
+
+
+Examples
+- [1, 2, 4, 4, 2, 3, 2] -> 3
+  1 + 2 + 4 | 4 | 2 + 3 + 2
+      7     | 4 |     7
+
+- [0, 20, 10, -60, 5, 25] -> 0
+  0 | 0 | 20 + 10 + -60 + 5 + 25
+  0 |0| 0
+
+  0 + 20 + 10 |-60| 5 + 25
+      30      |-60|   30
+
+Algorithm:
+- ITERATE over all elemnts and their idnices in the array
+  - for each element 
+    - if the index is == 0
+      return the index if 0 == array[1..-1].sum
+    - elsif the idx is > 0
+      return the index IF array[0..idx - 1] == array[idx+1..01]
+
+- REturn -1
+=end
+
+def equal_sum_index(array)
+  array.each_with_index do |_, idx|
+    if idx == 0
+      return idx if 0 == array[1..-1].sum
+    elsif idx > 0
+      return idx if array[0..idx - 1].sum == array[idx + 1..-1].sum
+    end
+  end
+
+  -1
+end
+
+
+p equal_sum_index([1, 2, 4, 4, 2, 3, 2]) == 3
+p equal_sum_index([7, 99, 51, -48, 0, 4]) == 1
+p equal_sum_index([17, 20, 5, -60, 10, 25]) == 0
+
+# The following test case could return 0 or 3. Since we're
+# supposed to return the smallest correct index, the correct
+# return value is 0.
+p equal_sum_index([0, 20, 10, -60, 5, 25]) #== 0
