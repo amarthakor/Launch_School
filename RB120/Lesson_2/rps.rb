@@ -54,6 +54,9 @@ Approach to OOP
 
 class Move
   VALUES = ['rock', 'paper', 'scissors', 'spock', 'lizard']
+  R2D2 = ['rock']
+  MASTERCHIEF = ['rock', 'paper', 'spock', 'lizard']
+  HAL = ['rock', 'scissors', 'scissors', 'scissors', 'lizard']
 
   def initialize(value)
     @value = value
@@ -173,13 +176,43 @@ class Human < Player
   end
 end
 
-class Computer < Player
+class Gandalf < Player
   def set_name
-    self.name = ['Gandalf', 'Masterchief', 'Zues', 'Osceola'].sample
+    self.name = ('Gandalf')
   end
 
   def choose
     self.move = Move.new(Move::VALUES.sample)
+  end
+end
+
+class Masterchief < Player
+  def set_name
+    self.name = ('Masterchief')
+  end
+
+  def choose
+    self.move = Move.new(Move::MASTERCHIEF.sample)
+  end
+end
+
+class R2D2 < Player
+  def set_name
+    self.name = ('R2D2')
+  end
+
+  def choose
+    self.move = Move.new(Move::R2D2.sample)
+  end
+end
+
+class Hal < Player
+  def set_name
+    self.name = ('Hal')
+  end
+
+  def choose
+    self.move = Move.new(Move::HAL.sample)
   end
 end
 
@@ -189,7 +222,7 @@ class RPSGame
 
   def initialize
     @human = Human.new
-    @computer = Computer.new
+    @computer = [Gandalf.new, Masterchief.new, R2D2.new, Hal.new].sample
     @human_score = 0
     @comp_score = 0
     @human_moves = ''
