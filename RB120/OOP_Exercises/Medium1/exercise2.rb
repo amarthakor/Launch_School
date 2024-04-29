@@ -67,15 +67,27 @@ class FixedArray
   end
 
   def [](index)
-    array[index]
+    validate_age?(index) ? array[index] : (raise IndexError)
   end
 
   def []=(index, value)
-    self.array[index] = value
+    validate_age?(index) ? self.array[index] = value : (raise IndexError)
   end
 
   def to_s
     array.to_s
+  end
+
+  private
+
+  def validate_age?(idx)
+    if idx >= 0 && idx <= array.size - 1
+      true
+    elsif idx <= -1 && idx >= -(array.size - 1)
+      true
+    else
+      false
+    end
   end
 end
 
@@ -105,23 +117,23 @@ puts fixed_array.to_s == '[nil, "c", nil, "a", "d"]'
 puts fixed_array[-1] == 'd'
 puts fixed_array[-4] == 'c'
 
-# begin
-#   fixed_array[6]
-#   puts false
-# rescue IndexError
-#   puts true
-# end
+begin
+  fixed_array[6]
+  puts false
+rescue IndexError
+  puts true
+end
 
-# begin
-#   fixed_array[-7] = 3
-#   puts false
-# rescue IndexError
-#   puts true
-# end
+begin
+  fixed_array[-7] = 3
+  puts false
+rescue IndexError
+  puts true
+end
 
-# begin
-#   fixed_array[7] = 3
-#   puts false
-# rescue IndexError
-#   puts true
-# end
+begin
+  fixed_array[7] = 3
+  puts false
+rescue IndexError
+  puts true
+end
