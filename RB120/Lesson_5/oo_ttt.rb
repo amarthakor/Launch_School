@@ -40,8 +40,8 @@ class Board
   def get_square_at(key)
     @squares[key]
   end
-  
-  def []= (num, marker)
+
+  def []=(num, marker)
     @squares[num].marker = marker
   end
 
@@ -81,6 +81,8 @@ class Board
     (1..9).each { |key| @squares[key] = Square.new }
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def draw
     puts "     |     |"
     puts "  #{@squares[1]}  |  #{@squares[2]}  |  #{@squares[3]}"
@@ -94,7 +96,8 @@ class Board
     puts "  #{@squares[7]}  |  #{@squares[8]}  |  #{@squares[9]}"
     puts "     |     |"
   end
-
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 end
 
 class Square
@@ -137,6 +140,7 @@ class TTTGame
   end
 
   def display_welcome_msg
+    clear
     puts "Welcome to Tic Tac Toe!"
     puts
   end
@@ -234,7 +238,6 @@ class TTTGame
   end
 
   def play
-    clear
     display_welcome_msg
     loop do
       display_board
