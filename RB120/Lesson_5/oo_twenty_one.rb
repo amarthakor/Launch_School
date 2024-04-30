@@ -123,6 +123,10 @@ class Hand
     # need to find way to define total value of cards
     @cards.sum # for now
   end
+
+  def value
+    # need to assign value to J, Q, K, A cards
+  end
 end
 
 class Player
@@ -132,11 +136,15 @@ class Player
   end
 
   def hit
-
+    # gets new card from deck
   end
 
   def stay
+    # does nothing for this turn
+  end
 
+  def bust?
+    # bust if hand sum is over 21..
   end
 end
 
@@ -155,40 +163,57 @@ class Dealer
     # if hand sum is 17, dealer stays
     @hand.total >= 17
   end
+
+  def bust?
+    # bust if hand sum is over 21... 
+  end
 end
 
 class Card
   RANKS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
   SUITES = ['Heart', 'Diamond', 'Spades', 'Clubs']
 
-  def initialize
-    @rank
-    @suite
+  def initialize(value, symbol)
+    @rank = value
+    @suite = symbol
   end
 
-  # probably need to create all 52 type Card objects
-  # for each suit, create all suit * card num combination
-  # initialize state..
-    # @rank
-    # @suite
 end
 
 class Deck
   
   def initialize
     @cards = []
+    Card::SUITES.each do |suite|
+      Card::RANKS.each do |rank|
+        @cards << Card.new(rank, suite)
+      end
+    end
 
-    # iterate and append in 52 cards to deck in here
+    shuffle_deck!
   end
 
-
-  # will the Deck class simply be the overall 52 card sum?
-  # in other words, should we just create a Deck object of 52 Card class objects?
-  # array?
+  def shuffle_deck!
+    @cards.shuffle!
+  end
+  # Deck handles deck duties, probably need to create shuffle method within Deck class
 end
 
+class Game
+  def start
+    # sequence of steps to play a game
+    # display_welcome_message
+    # 2) Show Player hand + total
+    # loop
+    #   3) Player Hit or Stay
+    #   4) Dealers turn
+    #   5) break if someone wins or someone busts
+    # end
+    # 6) declare winner
+    # 7) display closing msg
+  end
+end
 
-card = Card.new
-card.create_deck
-p card
+deck = Deck.new
+p deck
 # Game.new.start # triggers game
