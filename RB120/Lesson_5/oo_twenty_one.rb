@@ -141,20 +141,15 @@ class Participant
     @hand = Hand.new
   end
 
-  def hit
-    # gets new card from deck
-
-  end
-
   def stay
     # does nthing for this turn
   end
 
   def bust?
-    # bust if hand sum is over 21... 
+    hand.total > 21
   end
 
-  def show_cards
+  def show_hand
     @hand.cards.map { |card| "#{card.rank} of #{card.suite}" }.join(', ')
   end
 end
@@ -243,43 +238,83 @@ class TwentyOne
   def show_initial_cards
     deal_initial_cards
     puts
-    puts "Your hand: #{player.show_cards}"
+    puts "Your hand: #{player.show_hand}"
     puts "Your total is: #{player.hand.total}"
     puts
-    puts "Dealers hand: #{dealer.show_cards}"
+    puts "Dealers hand: #{dealer.show_hand}"
     puts "Dealers total is: #{dealer.hand.total}"
   end
 
   def show_cards
-    puts "Your hand: #{player.show_cards}"
+    puts "Your hand: #{player.show_hand}"
     puts "Your total is: #{player.hand.total}"
   end
 
-  #
-  #
-  #
-  # Left off here!!! Need to create method to stop repeating '.hand.cards' so much
-  # Need to create dealer turn next
-  # Then show result after 1 full round
-  # Then display end message
-  # Then work on looping construct for multiple rounds and break conditions
-  def players_turn
+  def show_dealer_cards
     puts
-    puts "Would you like to hit or stay?"
-    answer = gets.chomp.downcase
-    player.hand.cards << deal_card if answer == 'y'
-    puts "You drew #{player.hand.cards.last.rank} #{player.hand.cards.last.suite}"
+    puts "Dealers current hand: #{dealer.show_hand}"
+    puts "Dealers total is: #{dealer.hand.total}"
+  end
+
+  # Left off here!!! Need to create method to stop repeating '.hand.cards' so much
+  # Then display end message
+  def players_turn
+      puts
+      puts "Would you like to hit or stay? (h / s)"
+      answer = gets.chomp.downcase
+      player.hand.cards << deal_card if answer == 'h'
+      puts
+      puts "You drew #{player.hand.cards[-1].rank} #{player.hand.cards[-1].suite}" if answer == 'h'
     show_cards
+  end
+
+  def player_bust?
+    if player.bust?
+      puts "Oh know, you bust! Better luck next time!"
+    end
+  end
+
+  def dealer_play?
+    !player.bust?
+  end
+
+  def dealers_turn
+    puts
+    if dealer.hand.total < 17
+      dealer.hand.cards << deal_card
+      puts "Dealer hit!"
+      puts "Dealer drew #{dealer.hand.cards[-1].rank} #{dealer.hand.cards[-1].suite}"
+    else
+      puts "Dealer stayed!"
+    end
+    show_dealer_cards
+  end
+
+  def show_result # dealer goes last, so if player busts, game must end early... effects possible outcomes..
+    if dealer.hand.total > 21 && player.hand.total <= 21
+      puts "You won!"
+    elsif dealer.hand.total > player.hand.total && dealer.hand.total <= 21
+      puts "You lost, the dealer won!"
+    elsif dealer.hand.total < player.hand.total && player.hand.total <= 21
+      puts "You won!"
+    elsif dealer.hand.total == player.hand.total
+      puts "You tied with the dealer!"
+    end
+  end
+
+  def display_closing_message
+    puts
+    puts "Thanks for playing twenty one with us, hope you had fun!"
   end
 
   def start
     display_welcome_message
     show_initial_cards
     players_turn
-    # dealers_turn
-    # show_result
-    # delcare_winner
-    # display_closing_msg
+    player_bust?
+    dealers_turn if dealer_play?
+    show_result
+    display_closing_message
   end
 end
 
