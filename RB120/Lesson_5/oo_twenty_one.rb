@@ -283,10 +283,5 @@ class TwentyOne
   end
 end
 
-
-# player = Player.new
-# puts player
-# p player.show_cards
-# puts player
 game = TwentyOne.new
 game.start # triggers game
