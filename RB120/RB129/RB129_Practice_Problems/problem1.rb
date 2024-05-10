@@ -45,6 +45,7 @@ kids = DataBase.new
 kids << jill1
 kids << jill2
 kids << jill3               # => That student is already in the database
+
 # want to make sure that newly appended object is only appended if the current array
 # does not contain the argument already
 
