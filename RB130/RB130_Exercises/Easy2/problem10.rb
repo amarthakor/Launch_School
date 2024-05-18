@@ -1,7 +1,6 @@
 def each_cons(arr, indicator)
-  arr[0..-2].each_index do |idx|
-    yield(*arr[idx..(arr[idx+1])])
-  end
+  
+ 
 
   nil
 end
