@@ -65,7 +65,7 @@ class Diamond
   MID_SPACE = { 'A' => 0, 'B' => 1, 'C' => 3, 'D' => 5, 'E' => 7, 'F' => 9, 'G' => 11,
                 'H' => 13, 'I' => 15, 'J' => 17, 'K' => 19, 'L' => 21, 'M' => 23, 'N' => 25,
                 'O' => 27, 'P' => 29, 'Q' => 31, 'R' => 33, 'S' => 35, 'T' => 37, 'U' => 39,
-                'V' => 41, 'W' => 43, 'X' => 45, 'Y' => 47, 'Z' => 49 }
+                'V' => 41, 'W' => 43, 'X' => 45, 'Y' => 47, 'Z' => 49 }.freeze
 
   def self.make_diamond(letter)
     display = ''
@@ -78,14 +78,13 @@ class Diamond
       output_half_of_diamond(letter, display, 1) { |ltrs| ltrs.reverse }
       output_first_last_row(letter, display)
     end
-    # display
   end
 
   def self.output_first_last_row(letter, output)
     output << "#{' ' * ALPHA.index(letter)}A#{' ' * ALPHA.index(letter)}\n"
   end
 
-  def self.output_half_of_diamond(letter, output, spc, increment=true)
+  def self.output_half_of_diamond(letter, output, spc, increment = true)
     letters = ('B'...letter).to_a
     letters = yield(letters) if block_given?
     letters.each do |ltr|
