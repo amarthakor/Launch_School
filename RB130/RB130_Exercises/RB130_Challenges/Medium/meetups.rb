@@ -1,5 +1,6 @@
 require 'date'
 
+# 1:43pm
 
 # In this program, we'll construct objects that represent a meetup date. Each object
 # takes a month number (1-12) and a year (e.g., 2021). Your object should be able
@@ -22,3 +23,121 @@ require 'date'
 # The days of the week are given by the strings 'Monday', 'Tuesday', 'Wednesday',
 # 'Thursday', 'Friday', 'Saturday', and 'Sunday'. Again, the case of the strings
 # is not important.
+
+=begin
+---- P
+
+Problem: Given two string arguments, return a Date object of the Date
+         specified by the arguments
+
+Rules:
+- First argument correlates to which day of the week in that month
+  - Case does not matter
+  - Choices are 'first', second, third, fourth, fifth, teenth CASE dOES NOT MATTER
+    - Not all weeks will have a 5th day of the week (ex. maybe only 5th Sun-Tues)
+    - 'teenth' represents 13th/14th/15th/16th/17th/18th/19th
+      - this day will be a Monday-Sunday
+
+- Second argument represents the day we plan to meetup
+  - CASE DOES NOT MATTER
+  - Choices are 'monday', 'tuesday'... 'sunday'
+
+- TWO MANDATORY METHODS
+  - Constructor method takes 2 arguments
+    - BOTH INTEGERS
+    - YEAR and MONTH
+
+  - INSTANCE METHOD that takes 2 arugments
+    - BOTH STRINGS; CASE DOES NOT MATTER
+    - DAY (S-Sat) and OCCURRENCE (first...teenth)
+    - SHOULD RETURN DATE OBJECT OF CORRECT DATE
+
+---- E
+
+- check Test suite
+
+
+---- D
+- create array to hold all days in that month of that year?
+  - iterate through days and select one that matches our needs?
+
+---- A
+- CREATE CONSTRUCTOR METHOD, 2 arguments, year and month
+  - @year = year
+  - @month = month
+  - @day = nil?
+  - @days = []
+    Date.new(y, m).day.times do |day|
+      @days << date objects from 1 to end of month
+    end
+
+- CREATE INSTANCE METHOD #day, takes 2 string args, day and occurrence
+  -create HELPER methods for each day of the week?
+  - if 'monday'.downcase
+    - select over @days and return an array of all days that are mondays
+    - second helper method
+      - if occurrence is 'first', second, third, fourth, or fifth
+        - if /else statement
+        - select the element at the corresponding idx position
+    - third helper method?
+      - if occurrence is teenth,
+        - select from @days where the day is 13/14/15/16/17/18/19
+
+=end
+
+class Meetup
+  TEENTH_DAYS = [13, 14, 15, 16, 17, 18, 19]
+
+  def initialize(yr, mth)
+    @year = yr
+    @month = mth
+    @days = []
+    Date.new(yr, mth, -1).day.times { |d| @days << Date.new(yr, mth, d + 1) }
+  end
+
+  def day(d, occurrence)
+    @days = select_days(d)
+    determine_date(occurrence)
+  end
+
+  def select_days(day)
+    day = day.downcase
+    if day == 'monday'
+      @days.select(&:monday?)
+    elsif day == 'tuesday'
+      @days.select(&:tuesday?)
+    elsif day == 'wednesday'
+      @days.select(&:wednesday?)
+    elsif day == 'thursday'
+      @days.select(&:thursday?)
+    elsif day == 'friday'
+      @days.select(&:friday?)
+    elsif day == 'saturday'
+      @days.select(&:saturday?)
+    else
+      @days.select(&:sunday?)
+    end
+  end
+
+  def determine_date(occur)
+    occur = occur.downcase
+    if occur == 'teenth'
+      @days.select { |date| TEENTH_DAYS.include?(date.day) }[0]
+    elsif occur == 'first'
+      @days.first
+    elsif occur == 'second'
+      @days[1]
+    elsif occur == 'third'
+      @days[2]
+    elsif occur == 'fourth'
+      @days[3]
+    elsif occur == 'fifth'
+      @days[4]
+    else
+      @days.last
+    end
+  end
+end
+
+test = Meetup.new(2013, 5)
+p test.day('Tuesday', 'first')
