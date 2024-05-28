@@ -16,9 +16,11 @@
 
 # Rules:
 # # - Should be able to add or subtract minutes from the time of the clock
-#   - Should not mutate clock objects when adding/subtracting, rather create a NEW clock object
-#   - Two different clock objects that represent the same time should be == to each other
-#   - Cannot use built in time or date functionality; only arithmetic operations
+# - Should not mutate clock objects when adding/subtracting, rather create
+#       a NEW clock object
+#   - Two different clock objects that represent the same time should be ==
+#       to each other
+#   - Cannot use built in time or date functionality; only arithmetic oprations
 #   - 24 hour clock time
 #   - Format string such that single hours and digits are preceded by a 0
 #     - '00:00' format of 'hh:mm'
@@ -47,9 +49,9 @@
 
 # --- A
 # - CREATE constructor method
-    # - 
+
   # - CREATE class method #at(X, X)
-  #   - takes 2 arguments, second is optional
+#    - takes 2 arguments, second is optional
   # - CREATE instance method '+' takes integer argument
   #   - returns NEW clock object
   # - CREATE instance method '-' that takes integer argument
@@ -63,7 +65,7 @@
           #   - total_mins - new_hr*60 to find any leftover minutes
   # - CREATE to_s instance method
   #   - formats time into 'hh:mm' string
-      # - 
+      # -
   # - CREATE == instance method
   #   - when two clock objects are equal time, should be equal
 
