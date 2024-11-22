@@ -1,6 +1,7 @@
 function rotateArray(arr) {
   if (!Array.isArray(arr)) return undefined;
   if (arr.length === 0) return [];
+
   let firstEle = arr[0];
   let rotatedArr = arr.slice(1);
   rotatedArr.push(firstEle);
