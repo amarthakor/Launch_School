@@ -71,7 +71,8 @@ HELPER METHOD for modifying versions into integers for comparison
 */
 
 function compareVersions(ver1, ver2) {
-  if (/[^0-9.]/.test(ver1) || /[^0-9.]/.test(ver2)) return null;
+  let validChars = /^[0-9]+(\.[0-9]+)*$/
+  if (!validChars.test(ver1) || !validChars.test(ver2)) return null;
 
   ver1 = modifyStrVersion(ver1);
   ver2 = modifyStrVersion(ver2);
@@ -97,9 +98,11 @@ function modifyStrVersion(versionNum) {
 }
 
 // 0.1 < 1 = 1.0 < 1.1 < 1.2 = 1.2.0.0 < 1.18.2 < 13.37
-console.log(compareVersions('0.1', '1'));            // -1
-console.log(compareVersions('1', '1.0'));            // 0
-console.log(compareVersions('1.nadwe', '99'));       // null
-console.log(compareVersions('1.2.0.0', '1.18.2'));   // 1
-console.log(compareVersions('1.2', '1.2.0.0'));      // 0
-console.log(compareVersions('13.37', '1.18.2'));     // 1
+console.log(compareVersions('0.1', '1'));               // -1
+console.log(compareVersions('1', '1.0'));               // 0
+console.log(compareVersions('1.nadwe', '99'));          // null
+console.log(compareVersions('1.2.0.0', '1.18.2'));      // 1
+console.log(compareVersions('1.2', '1.2.0.0'));         // 0
+console.log(compareVersions('13.37', '1.18.2'));        // 1
+console.log(compareVersions('1...23..23.', '1.18.2'));  // null
+console.log(compareVersions('.123.123.13', '1.0.1'))    // null
