@@ -90,7 +90,24 @@ console.log(findClosestOpponent({
 
 
 function findClosestOpponent(positions, position) {
-  // ...
+  if (Object.keys(positions).length === 0) return null;
+  let activePositions = [];
+  let smallestDiff;
+
+  for (let pos in positions) {
+    if (typeof positions[pos] === 'number') activePositions.push(positions[pos]);
+  }
+  
+  for (let idx = 0; idx < activePositions.length; idx += 1) {
+    if (idx === 0) smallestDiff = Math.abs(position - activePositions[idx]);
+    if (Math.abs(position - activePositions[idx]) < smallestDiff) {
+      smallestDiff = Math.abs(position - activePositions[idx]);
+    }
+  }
+
+  return activePositions.filter(pos => {
+    return Math.abs(position - pos) === smallestDiff
+  }).sort((a, b) => (b - a))[0];
 }
 
 console.log(findClosestOpponent({
@@ -108,3 +125,18 @@ console.log(findClosestOpponent({
   "Opponent 1a" : 1, "Opponent 1b" : 5,
   "Opponent 1c" : 50, "Opponent 1d" : 100, "Opponent 1e" : null
 }, 150)); // 100
+
+console.log(findClosestOpponent({}, 10)); // null
+
+console.log(findClosestOpponent({}, 74)); // null
+
+console.log(findClosestOpponent({
+  "Atlas" : 1,
+  "Luna" : 15,
+  "" : 37
+}, 10)); // 15
+
+console.log(findClosestOpponent({
+  "Opponent 1a" : null, "Opponent 1b" : 5, "Opponent 1c" : null,
+  "Opponent 1d" : null, "Opponent 1e" : 200, "Opponent 1f" : 400
+}, 300)); // 400
