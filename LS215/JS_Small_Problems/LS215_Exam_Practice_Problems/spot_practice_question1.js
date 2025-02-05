@@ -82,7 +82,16 @@ helper isAMatch? -> takes current subarr and arg2 as an argument
   - ELSE
     - return TRUE;
 
+-- Need HELPER METHOD to also ensure edge cases such as
+  - (1, [1, 2, 2], [1, 1, 2]) fail so extra matches are not incorrectly added
+- CHECK if the count of a givne element in arg1 is => arg2
+  - FILTER both arrays by the given element
+    - IF the length of arr1 is >= arr2
+      - RETURN true;
+    - ELSE
+      - RETURN false;
 */
+
 function sameElements(arr1, arr2) {
   if (arr1.length === 0) return null;
   if (arr2.length === 0) return arr1.length;
