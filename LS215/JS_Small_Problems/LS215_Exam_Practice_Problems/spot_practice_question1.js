@@ -10,6 +10,11 @@ Rules:
   - I want to count how many subarrays in the first argument
     have the same elements as the second array argument
   - Order of elements doesn't matter as long as all elements are the same
+  - A MATCHING SUBARRAY MUST INCLUDE ALL ELEMENTS FROM THE SECOND ARRAY ARGUMENT,
+    INCLUDING DUPLICATES...
+    - THUS, [1, 2, 3] !== [1, 1, 2, 3] IS NOT A MATCH, SINCE DUP 1'S ARE NOT MATCHED
+    -       [1, 1, 2, 3] === [3, 2, 1, 1] IS A MATCH, SINCE DUPES ARE MATCHED
+    -       [5, 4, 1, 1, 2, 3] === [3, 2, 1, 1] IS A MATCH, SINCE ALL ELE IN 2ND ARR ARE ACCOUNTED FOR
 
 Assumptions:
 - If one or both are arugments are empty arrays?
@@ -120,6 +125,7 @@ function equalCounts(element, arr1, arr2) {
 // console.log(equalCounts(1, [1, 2, 2], [1, 1, 2])); // false
 // console.log(equalCounts(1, [1, 1, 2], [1, 1, 2])); // true
 
+console.log(sameElements([[5, 4, 3, 2, 1, 1], [1, 1, 2, 3], [1, 2, 3]], [1, 1, 2, 3]) === 2);
 console.log(sameElements([[1, 2, 3], [2, 3, 4], [3, 1, 2]], [1, 2, 3]) === 2);
 console.log(sameElements([], [1]) === null);
 console.log(sameElements([[1, 1, 2, 3, 4, 4]], [1, 2, 3, 4]) === 1);
