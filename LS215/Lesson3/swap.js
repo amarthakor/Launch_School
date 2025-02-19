@@ -7,6 +7,10 @@ OUTPUT: string
 
 */
 
+// use maxSwap to figure out max amount of swaps for even digs / alphas
+// then if current char is alpha, reassign current elem and the next dig to each other
+// if the char isnt an alpha, just return the char
+// finally just return the array joined into a string
 
 // Examples / Test Cases
 console.log(swap("1a2b3c"))// === "a1b2c3");           // true
