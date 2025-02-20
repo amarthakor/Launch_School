@@ -122,19 +122,19 @@ function longestBalancedSubsequence(string) {
   return validPairs * 2;
 }
 
-// console.log(longestBalancedSubsequence("(())")); // Output: 4
-// console.log(longestBalancedSubsequence("()())")); // Output: 4
-// console.log(longestBalancedSubsequence(")()())")); // Output: 4
-// console.log(longestBalancedSubsequence("((())")); // Output: 4
-// console.log(longestBalancedSubsequence("())(()")); // Output: 4
-// console.log(longestBalancedSubsequence(")(")); // Output: 0
-// console.log((longestBalancedSubsequence(""))); // 0
-// console.log((longestBalancedSubsequence("((("))); // 0
-// console.log((longestBalancedSubsequence(")))"))); // 0
-// console.log((longestBalancedSubsequence(['h', 'e', 'll', 'o', 'world']))); // null
-// console.log((longestBalancedSubsequence("(())", "(())"))); // 4
-// console.log(longestBalancedSubsequence("((())()()))")); // Should output: 10
-// console.log(longestBalancedSubsequence("())(())((()")); // Should output: 8
-// console.log(longestBalancedSubsequence(")(()((()))()")); // Should output: 10
+console.log(longestBalancedSubsequence("(())")); // Output: 4
+console.log(longestBalancedSubsequence("()())")); // Output: 4
+console.log(longestBalancedSubsequence(")()())")); // Output: 4
+console.log(longestBalancedSubsequence("((())")); // Output: 4
+console.log(longestBalancedSubsequence("())(()")); // Output: 4
+console.log(longestBalancedSubsequence(")(")); // Output: 0
+console.log((longestBalancedSubsequence(""))); // 0
+console.log((longestBalancedSubsequence("((("))); // 0
+console.log((longestBalancedSubsequence(")))"))); // 0
+console.log((longestBalancedSubsequence(['h', 'e', 'll', 'o', 'world']))); // null
+console.log((longestBalancedSubsequence("(())", "(())"))); // 4
+console.log(longestBalancedSubsequence("((())()()))")); // Should output: 10
+console.log(longestBalancedSubsequence("())(())((()")); // Should output: 8
+console.log(longestBalancedSubsequence(")(()((()))()")); // Should output: 10
 console.log(longestBalancedSubsequence("(()(()))(())")); // Should output: 10
-// console.log(longestBalancedSubsequence("((()())))")); // Should output: 8
+console.log(longestBalancedSubsequence("((()())))")); // Should output: 8
