@@ -121,6 +121,7 @@ function allLightsOn(switches) {
 
 // Examples:
 console.log(lightsOn(5));         // [1, 4]
+console.log(lightsOn(10));
 console.log(lightsOn(100));       // [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 console.log(lightsOn('hi'));      // return null
 console.log(lightsOn([1]));       // return null

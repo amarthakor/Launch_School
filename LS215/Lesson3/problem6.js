@@ -111,23 +111,23 @@ function balanced(msg) {
   return balanced === 0;
 }
 
-// console.log(balanced("()")); // === true
-// console.log(balanced("(())"));// === true
-// console.log(balanced("(()())"));// === true
-// console.log(balanced("((()"));// === false
-// console.log(balanced(")("));// === false
-// console.log(balanced("())("));// === false
+console.log(balanced("()")); // === true
+console.log(balanced("(())"));// === true
+console.log(balanced("(()())"));// === true
+console.log(balanced("((()"));// === false
+console.log(balanced(")("));// === false
+console.log(balanced("())("));// === false
 
-// // extra cases
+// extra cases
 
-// console.log(balanced("")); // === false
-// console.log(balanced(1));  // === null
-// console.log(balanced("()", "()")); // ===true
-// console.log(balanced("(  )")); // === true
-// console.log(balanced("(ab)")); // === true
-// console.log(balanced("((1))")); // === true
-// console.log(balanced("(1() (b) 1)")); // === true
-// console.log(balanced("(1() (b) 1)!)")); // === false
+console.log(balanced("")); // === false
+console.log(balanced(1));  // === null
+console.log(balanced("()", "()")); // ===true
+console.log(balanced("(  )")); // === true
+console.log(balanced("(ab)")); // === true
+console.log(balanced("((1))")); // === true
+console.log(balanced("(1() (b) 1)")); // === true
+console.log(balanced("(1() (b) 1)!)")); // === false
 
 console.log(balanced("((()))")); // === true
 console.log(balanced("(()()()())")); // === true
