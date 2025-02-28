@@ -83,6 +83,9 @@ createFlatArray
 function sortNumbers(numbers) {
   if (numbers.length === 0) return [];
 
+  let flatArray = createFlatArray(numbers);
+  let uniqInts = findUniqInts(flatArray);
+  return sortInts(uniqInts);
 }
 
 function createFlatArray(numbers) {
@@ -110,10 +113,31 @@ function findUniqInts(numbers) {
 }
 
 function sortInts(numbers) {
+  let length = numbers.length;
+  let swap = true;
 
+  while (swap) {
+    swap = false;
+    for (let idx = 0; idx < length - 1; idx += 1) {
+      let firstNum = numbers[idx];
+      let secondNum = numbers[idx + 1];
+
+      if (firstNum > secondNum) {
+        numbers[idx] = secondNum;
+        numbers[idx + 1] = firstNum;
+        swap = true;
+      }
+    }
+    length -= 1;
+  }
+
+  return numbers;
 }
 
-console.log(findUniqInts([1, 1, 2, 3, 3]));
+
 let input1 = [[3, [2, 1]], [5, [4, [6, [7]]]]]; // Output: [1, 2, 3, 4, 5, 6]
-console.log(createFlatArray(input1));
+console.log(sortNumbers(input1));
 let input2 = [[10, 5, [5, 10]], [20, 15], []]; // Output: [5, 10, 15, 20]
+console.log(sortNumbers(input2));
+
+console.log(sortNumbers([]));
