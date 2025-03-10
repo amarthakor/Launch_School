@@ -109,8 +109,6 @@ function findPairs(numbers, targetSum) {
   let pairs = findAllPairs(numbers);
   let validPairs = selectValidPairs(pairs, targetSum);
 
-  // validPairs = removeDuplicates(validPairs);
-  
   validPairs.map(pair => pair.sort((a, b) => a - b));
   validPairs.sort((a, b) => a[0] - b[0]);
   return removeDuplicates(validPairs);

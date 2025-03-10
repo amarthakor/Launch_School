@@ -130,7 +130,7 @@ console.log(smallestDifference([5, 5, 8, 10, 12])); // [5, 5] (smallest possible
 console.log(smallestDifference([1, 2, 3, 3, 4])); // [3, 3]
 
 // Negative numbers
-console.log(smallestDifference([-5, -3, 1, 4])); // [5, -3]
+console.log(smallestDifference([-5, -3, 1, 4])); // [-5, -3]
 console.log(smallestDifference([-10, -9, -8, -7])); // [-10, -9] (smallest diff is 1)
 
 // Mixed positive and negative with zero

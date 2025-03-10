@@ -42,10 +42,10 @@ Assumptions:
 2. Create a holding array of suabrrs
 3. Create subarrays of `n` length based off our given inputs ** Helper
   - Loop over the given array
-    - Init a counter to 0
+    - Set a counter to 0;
     - Create a subarr of every n elements # slice
     - Append this subarr to the holding array
-    - Increment the counter by 3
+    - Increment the slice counter by 3
   - Return holding array
 4. Return the holding array of subarrs
 
@@ -68,6 +68,7 @@ function chunkArray(arr, size_limit) {
 console.log(chunkArray(12, 1)); // null
 console.log(chunkArray([1, 2, 3])); // null
 console.log(chunkArray([1, 2, 3, 4], 'hello')); // null
+console.log(chunkArray('hello')); // null
 console.log(chunkArray([], 4)); // []
 console.log(chunkArray([1, 2, 3, 4, 5], 2))// == [[1, 2], [3, 4], [5]]
 console.log(chunkArray(['a', 'b', 'c', 'd', 'e', 'f'], 3))// == [['a', 'b', 'c'], ['d', 'e', 'f']]
