@@ -105,3 +105,8 @@ console.log(highestScoringWord('')); // ''
 console.log(highestScoringWord('man i need a taxi up to ubud')); // === 'taxi'
 console.log(highestScoringWord('what time are we climbing up the volcano')); // === 'volcano'
 console.log(highestScoringWord('aa b')); // === 'aa
+console.log(highestScoringWord('aa b', 'aaaaa')); // === 'aa'
+console.log(highestScoringWord(123)); // === null
+console.log(highestScoringWord('a(*&A b!@#$')); // === 'a(*&A'
+console.log(highestScoringWord('what time    are we climbing up the     volc@no')); // === 'volc@no'
+console.log(highestScoringWord('what time are we climbing up the VOLcanO')); // === 'VOLcanO'
