@@ -18,29 +18,73 @@
   - the max count
 */
 
+
+// *** ORIGINAL SOLUTION: O(N^2) TIME COMPLEXITY
+
+// function findMajority(numbers) {
+//   let uniqNums = [];
+//   numbers.forEach(num => {
+//     if (!uniqNums.includes(num)) uniqNums.push(num);
+//   });
+
+//   let groupedNums = [];
+//   uniqNums.forEach(uniqNum => {
+//     let currentGroup = [];
+//     numbers.forEach(num => {
+//       if (uniqNum === num) currentGroup.push(num);
+//     });
+//     groupedNums.push(currentGroup);
+//   });
+
+//   let largestSubarr = 0;
+//   groupedNums.forEach(group => {
+//     if (group.length > largestSubarr) largestSubarr = group.length;
+//   });
+
+//   let majority = groupedNums.filter(group => group.length === largestSubarr);
+//   return majority[0][0];
+// }
+
+
+// Updated solution O(N + K) time complexity, O(N) space complexity
 function findMajority(numbers) {
-  let uniqNums = [];
+  const uniqNums = {};
+
   numbers.forEach(num => {
-    if (!uniqNums.includes(num)) uniqNums.push(num);
+    if (!uniqNums[num]) {
+      uniqNums[num] = 1;
+    } else {
+      uniqNums[num] += 1;
+    }
   });
 
-  let groupedNums = [];
-  uniqNums.forEach(uniqNum => {
-    let currentGroup = [];
-    numbers.forEach(num => {
-      if (uniqNum === num) currentGroup.push(num);
-    });
-    groupedNums.push(currentGroup);
-  });
+  let maxCountPair = [0, 0];
 
-  let largestSubarr = 0;
-  groupedNums.forEach(group => {
-    if (group.length > largestSubarr) largestSubarr = group.length;
-  });
+  for (let number in uniqNums) {
+    if (uniqNums[number] > maxCountPair[1]) maxCountPair = [Number(number), uniqNums[number]];
+  }
 
-  let majority = groupedNums.filter(group => group.length === largestSubarr);
-  return majority[0][0];
+  return maxCountPair[0];
 }
+
+// ideal O(N) time complexity solution
+
+// function findMajority(nums) {
+//   const counts = new Map();
+//   const majorityCount = Math.ceil(nums.length / 2);
+
+//   for (let num of nums) {
+//     if (counts.has(num)) {
+//       counts.set(num, counts.get(num) + 1);
+//     } else {
+//       counts.set(num, 1);
+//     }
+
+//     if (counts.get(num) >= majorityCount) {
+//       return num;
+//     }
+//   }
+// }
 
 console.log(findMajority([6, 4, 4, 6, 4]) === 4);
 console.log(findMajority([4, 5, 2, 5, 5, 5, 1]) === 5);
