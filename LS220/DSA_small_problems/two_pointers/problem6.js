@@ -87,9 +87,9 @@ function checkTripleMatch(nums) {
   let [anchor, runner] = [0, 1];
 
   while (anchor < nums.length - 1) {
-    if (nums[anchor] * 3 === nums[runner]) {
+    if (nums[anchor] * 3 === nums[runner] || nums[anchor] === nums[runner] * 3) {
       return true;
-    } else if (nums[anchor] * 3 > nums[runner]) {
+    } else if (Math.abs(nums[anchor]) * 3 > Math.abs(nums[runner])) {
       runner += 1;
     } else {
       anchor += 1;
@@ -100,7 +100,23 @@ function checkTripleMatch(nums) {
   return false;
 }
 
+// function checkTripleMatch(nums) {
+//   let anchor = 0, runner = 1;
 
+//   while (runner < nums.length) {
+//       if (nums[runner] === 3 * nums[anchor]) {
+//           return true;
+//       }
+
+//       if (nums[runner] > 3 * nums[anchor]) {
+//           anchor++;
+//       } else {
+//           runner++;
+//       }
+//   }
+
+//   return false;
+// }
 
 console.log(checkTripleMatch([1, 3, 9, 28]) === true);
 console.log(checkTripleMatch([1, 2, 4, 10, 11, 12]) === true);
@@ -112,5 +128,27 @@ console.log(checkTripleMatch([1, 2, 4, 8]) === false);
 console.log(checkTripleMatch([]) === false);
 console.log(checkTripleMatch([1]) === false);
 console.log(checkTripleMatch([1, 3]) === true);
+// javascript
 
+// Test cases with negative numbers
+console.log(checkTripleMatch([-9, -6, -3, -1]) === true);  // -3 is 3 times -9
+
+// Test cases with zeros
+console.log(checkTripleMatch([0, 0, 0]) === true);  // 0 is 3 times 0
+
+// Mixed negative and positive numbers
+console.log(checkTripleMatch([-15, -5, 1, 5, 15]) === true);  // -5 is 3 times -15
+
+// Test with array that has only one possible triple match at the end
+console.log(checkTripleMatch([-100, -50, -25, 1, 75, 300]) === false);  // 300 is 3 times 100
+
+// Single value tests
+console.log(checkTripleMatch([0]) === false);  // Can't form a triple match with just one element
+
+// Test with extremely large numbers
+console.log(checkTripleMatch([1000000, 3000000]) === true);  // 3000000 is 3 times 1000000
+
+// Additional edge cases
+console.log(checkTripleMatch([-10, -5, -3, 10, 15]) === false);  // No triple matches
+console.log(checkTripleMatch([Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER]) === false);  // Extreme values
 // All test cases should log true.
