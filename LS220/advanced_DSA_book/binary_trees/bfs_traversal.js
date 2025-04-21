@@ -1,7 +1,7 @@
 // Given the root node of a binary tree, implement a
-// function `inorderTraversal` that returns an
-// array containing the values of the nodes visited in
-// an inorder traversal.
+// function `bfs` that returns an array containing the
+// values of the nodes visited in level order
+// (or breadth-first-search) traversal.
 
 class Node {
   constructor(value) {
@@ -44,16 +44,30 @@ function buildTree(arr) {
   return root;
 }
 
-// Test Cases:
+function bfs(root) {
+  if (root === null) return [];
 
+  let queue = []
+  queue.push(root);
+  let results = [];
+  for (let i = 0; i < queue.length; i++) {
+    results.push(queue[i].val);
+    if (queue[i].left) queue.push(queue[i].left);
+    if (queue[i].right) queue.push(queue[i].right);
+  }
+
+  return results;
+}
+
+// Test cases
 const tree1 = buildTree([1, null, 2, 3]);
-console.log(inorderTraversal(tree1)); // Output: [1, 3, 2]
+console.log(bfs(tree1)); // Output: [1, 2, 3]
 
 const tree2 = buildTree([1, 2, 3, null, null, 4, null, null, 5]);
-console.log(inorderTraversal(tree2)); // Output: [2, 1, 4, 5, 3]
+console.log(bfs(tree2)); // Output: [1, 2, 3, 4, 5]
 
 const tree3 = buildTree([5, 3, null, 2, null, 1, null]);
-console.log(inorderTraversal(tree3)); // Output: [1, 2, 3, 5]
+console.log(bfs(tree3)); // Output: [5, 3, 2, 1]
 
 const tree4 = buildTree([10, 5, 15, null, 6, 12, 21, null, null, 11]);
-console.log(inorderTraversal(tree4)); // Output: [5, 6, 10, 11, 12, 15, 21]
+console.log(bfs(tree4)); // Output: [10, 5, 15, 6, 12, 21, 11]
