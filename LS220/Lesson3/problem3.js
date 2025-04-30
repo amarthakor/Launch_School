@@ -18,7 +18,42 @@
 
 
 function minLengthForTargetSum(nums, target) {
-  // implementation goes here
+  if (nums.length === 0) return 0;
+  let [left, right] = [1, nums.length];
+  let minWinSize = Infinity;
+
+
+  // binary search to find smallest window size
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (subarrTargetSum(mid, nums, target)) {
+      minWinSize = Math.min(minWinSize, mid);
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+
+  return minWinSize === Infinity ? 0 : minWinSize;
+}
+
+function subarrTargetSum(k, nums, target) {
+  let [anchor, runner, currSum] = [0, 0, 0];
+
+  while (runner < nums.length) {
+    if (runner >= k) {
+      currSum -= nums[anchor];
+      anchor++;
+    }
+
+    currSum += nums[runner];
+    // console.log(currSum, k);
+    if (currSum >= target) return true;
+    runner++;
+  }
+
+  return false;
 }
 
 console.log(minLengthForTargetSum([1, 2, 3], 5) === 2);

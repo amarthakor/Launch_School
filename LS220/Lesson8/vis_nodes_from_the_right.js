@@ -76,12 +76,12 @@ function visibleNodes(root) {
   let queue = [root]; // set up queue for loop
 
   while (queue.length > 0) { // while there are still nodes in the queue
-    let n = queue.length;
+    let n = queue.length; // tracks the current level to determine nodes in that lvl
     for (let idx = 0; idx < n; idx++) {
-      let curr = queue.shift();
-      if (idx === n - 1) results.push(curr.val);
-      if (curr.left) queue.push(curr.left);
-      if (curr.right) queue.push(curr.right);
+      let curr = queue.shift(); // loop over the current lvl
+      if (idx === n - 1) results.push(curr.val); // if we are on the right most node in lvl
+      if (curr.left) queue.push(curr.left); // if there is a left child of the curr node
+      if (curr.right) queue.push(curr.right); // if there is a right child of the curr node
     }
   }
 
