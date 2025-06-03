@@ -12,7 +12,7 @@ Algorithm:
 - while runner is less than the array size
 	- if the element at runner is not 1
 		- swap the elements referenced by anchor and runner respectively
-		- increment anchor by 1
+		- increment anchor by 1mj
 	- increment runner by 1
 - return the array
 
