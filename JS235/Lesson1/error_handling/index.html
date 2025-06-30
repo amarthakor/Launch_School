@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile Fetcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+
+    label {
+      display: block;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Welcome to the User Profile Fetcher</h1>
+  <p>Enter a user ID to fetch the profile:</p>
+  
+  <form id="userForm">
+    <label>
+      Username:
+      <input type="text" id="usernameInput" placeholder="Enter username">
+    </label>
+
+    <label>
+      Password:
+      <input type="password" id="passwordInput" placeholder="Enter your password">
+    </label>
+    <button type="submit">Fetch Profile</button>
+  </form>
+
+
+  <div id="userInfo"></div>
+  <div id="errorMessage" style="color: red; display: none;"></div>
+
+  <!-- External server logic -->
+  <script src="server.js"></script>
+
+  <script>
+    // Handle form submission
+    document.getElementById('userForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      
+      // Reset messages
+      const userInfoDiv = document.getElementById('userInfo');
+      userInfoDiv.textContent = '';
+      const errorMessageDiv = document.querySelector('#errorMessage');
+      errorMessageDiv.style.display = 'none';
+
+      // Get form input
+      const usernameInput = document.getElementById('usernameInput').value;
+      const username = usernameInput.trim();
+      const passwordInput = document.getElementById('passwordInput').value;
+      const password = passwordInput.trim();
+
+      authenticate(username, password, (errorMessage, userID) => {
+        if (errorMessage) {
+          errorMessageDiv.textContent = errorMessage;
+          errorMessageDiv.style.display = 'block';
+        } else {
+          userInfoDiv.textContent = 'Login successful! Fetching your profile...';
+
+          fetchUserProfile(userID, (errorMessage, userData) => {
+            if (errorMessage) {
+              errorMessage.textContent = errorMessage;
+              errorMessage.style.display = 'block';
+            } else {
+              userInfoDiv.textContent = `Hello, ${userData.name}!\nYou are ${userData.age} years old!`;
+            }
+          });
+        }
+
+      });
+    });
+  </script>
+</body>
+</html>
