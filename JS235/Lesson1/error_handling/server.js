@@ -16,7 +16,7 @@ function authenticate(username, password, callback) {
     if (Math.random() < 0.1) {
       return callback('Something went wrong. Please try again later.', null);
     }
-    console.log(username, password);
+
     if (passwords[username] && passwords[username].password === password) {
       callback(null, passwords[username].id);
     } else {
