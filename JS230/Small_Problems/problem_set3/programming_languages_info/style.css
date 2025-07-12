@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+body {
+  background-color: cornflowerblue;
+}
+
+.title {
+  color: white;
+  text-align: center;
+}
+
+.languages {
+  border: 1px solid black;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  padding: 5px 10px;
+}
+
+button {
+  background-color: goldenrod;
+  border-radius: 4px;
+}
+
+.lang-title {
+  font-size: 1.5em;
+}
